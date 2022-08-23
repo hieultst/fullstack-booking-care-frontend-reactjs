@@ -8,8 +8,34 @@ import "./Login.scss";
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.btnLogin = React.createRef();
+        this.state = {
+            username: "",
+            password: "",
+            isShowPassword: false,
+        };
     }
+
+    handleOnChangeUserName = (event) => {
+        this.setState({
+            username: event.target.value,
+        });
+    };
+
+    handleOnChangePassword = (event) => {
+        this.setState({
+            password: event.target.value,
+        });
+    };
+
+    handleLogin = (event) => {
+        console.log("all state: ", this.state);
+    };
+
+    handleShowHidePassword = (event) => {
+        this.setState({
+            isShowPassword: !this.state.isShowPassword,
+        });
+    };
 
     render() {
         return (
@@ -23,16 +49,40 @@ class Login extends Component {
                                 type="text"
                                 className="input"
                                 placeholder="Enter your username"
+                                value={this.state.username}
+                                onChange={(event) =>
+                                    this.handleOnChangeUserName(event)
+                                }
                             />
                             <span className="login-focus"></span>
                         </div>
                         <div className="col-12 form-group login-input">
                             <label className="login-label">Password</label>
-                            <input
-                                type="password"
-                                className="input"
-                                placeholder="Enter your password"
-                            />
+                            <div className="login-password-custom">
+                                <input
+                                    type={
+                                        this.state.isShowPassword
+                                            ? "text"
+                                            : "password"
+                                    }
+                                    className="input"
+                                    placeholder="Enter your password"
+                                    value={this.state.password}
+                                    onChange={(event) =>
+                                        this.handleOnChangePassword(event)
+                                    }
+                                />
+                                <i
+                                    className={
+                                        this.state.isShowPassword
+                                            ? "far fa-eye"
+                                            : "far fa-eye-slash"
+                                    }
+                                    onClick={(event) =>
+                                        this.handleShowHidePassword(event)
+                                    }
+                                ></i>
+                            </div>
                             <span className="login-focus"></span>
                         </div>
                         <div className="col-12">
@@ -41,7 +91,12 @@ class Login extends Component {
                             </span>
                         </div>
                         <div className="col-12">
-                            <button className="login-btn">Login</button>
+                            <button
+                                className="login-btn"
+                                onClick={(event) => this.handleLogin(event)}
+                            >
+                                Login
+                            </button>
                         </div>
                         <div className="col-12">
                             <span className="login-order">
@@ -51,13 +106,13 @@ class Login extends Component {
                         <div className="col-12">
                             <span className="login-social">
                                 <div className="login-social-icon facebook">
-                                    <i class="fab fa-facebook-f"></i>
+                                    <i className="fab fa-facebook-f"></i>
                                 </div>
                                 <div className="login-social-icon twitter">
-                                    <i class="fab fa-twitter"></i>
+                                    <i className="fab fa-twitter"></i>
                                 </div>
                                 <div className="login-social-icon google">
-                                    <i class="fab fa-google"></i>
+                                    <i className="fab fa-google"></i>
                                 </div>
                             </span>
                         </div>
