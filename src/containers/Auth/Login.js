@@ -99,6 +99,7 @@ class Login extends Component {
                                         this.handleOnChangePassword(event)
                                     }
                                 />
+                                <span className="login-focus"></span>
                                 <i
                                     className={
                                         this.state.isShowPassword
@@ -110,7 +111,6 @@ class Login extends Component {
                                     }
                                 ></i>
                             </div>
-                            <span className="login-focus"></span>
                         </div>
                         <div className="col-12">
                             <span className="forgot-pass">

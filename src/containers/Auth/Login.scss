@@ -68,10 +68,10 @@
                     &:focus {
                         border-color: transparent !important;
                     }
-                }
 
-                .input:focus+.login-focus::before {
-                    width: 100%;
+                    &:focus+.login-focus::before {
+                        width: 100%;
+                    }
                 }
 
                 .login-focus {
