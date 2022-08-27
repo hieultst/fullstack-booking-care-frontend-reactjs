@@ -50,6 +50,10 @@
                 &+.btn {
                     margin-left: 20px;
                 }
+
+                &:focus {
+                    box-shadow: none;
+                }
             }
 
             .btn-delete {

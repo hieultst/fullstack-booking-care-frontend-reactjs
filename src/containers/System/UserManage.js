@@ -2,8 +2,13 @@ import React, { Component, Fragment } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
-import { getAllUsers, createNewUserService } from "../../services/userService";
+import {
+    getAllUsers,
+    createNewUserService,
+    deleteUserService,
+} from "../../services/userService";
 import ModalUser from "./ModalUser";
+import { emitter } from "../../utils/emitter";
 
 class UserManage extends Component {
     constructor(props) {
@@ -49,10 +54,25 @@ class UserManage extends Component {
                 this.setState({
                     isOpentModalUser: false,
                 });
+                emitter.emit("EVENT_CLEAR_MODAL_DATA", data);
             }
         } catch (error) {
             console.log(error);
         }
+    };
+
+    handleDeleteUser = async (user) => {
+        try {
+            let response = await deleteUserService(user.id);
+            if (response && response.errCode === 0) {
+                await this.getAllUsers();
+            } else {
+                console.log(response.errMessage);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        console.log("Delete user", user);
     };
 
     render() {
@@ -93,7 +113,14 @@ class UserManage extends Component {
                                                 <button className="btn btn-edit">
                                                     <i className="fas fa-pencil-alt"></i>
                                                 </button>
-                                                <button className="btn btn-delete">
+                                                <button
+                                                    className="btn btn-delete"
+                                                    onClick={() => {
+                                                        this.handleDeleteUser(
+                                                            item
+                                                        );
+                                                    }}
+                                                >
                                                     <i className="fas fa-trash"></i>
                                                 </button>
                                             </td>
