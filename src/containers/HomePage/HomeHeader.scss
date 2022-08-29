@@ -70,19 +70,10 @@
                 font-weight: 600;
                 border-radius: 5px;
 
-                &:active {
+                &.active {
                     background: #45c3d2;
                     color: white;
                 }
-
-                &:hover {
-                    background: #45c3d2;
-                    color: white;
-                }
-
-                &.language_vi {}
-
-                &.language_en {}
             }
         }
     }
