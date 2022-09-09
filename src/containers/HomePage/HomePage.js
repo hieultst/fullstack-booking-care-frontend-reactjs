@@ -37,13 +37,13 @@ class HomePage extends Component {
             nextArrow: (
                 <CustomNextButton
                     classCss={"custom-btn next-btn"}
-                    icon={<i class="fas fa-chevron-right"></i>}
+                    icon={<i className="fas fa-chevron-right"></i>}
                 />
             ),
             prevArrow: (
                 <CustomPrevButton
                     classCss={"custom-btn prev-btn"}
-                    icon={<i class="fas fa-chevron-left"></i>}
+                    icon={<i className="fas fa-chevron-left"></i>}
                 />
             ),
         };

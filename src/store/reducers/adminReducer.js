@@ -1,33 +1,63 @@
-import actionTypes from '../actions/actionTypes';
+import actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    isLoggedIn: false,
-    adminInfo: null
-}
+    isLoadingGender: false,
+    genders: [],
+    roles: [],
+    position: [],
+};
 
-const appReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
+    let copyState = { ...state };
     switch (action.type) {
-        case actionTypes.ADMIN_LOGIN_SUCCESS:
+        case actionTypes.FETCH_GENDER_START:
+            copyState.isLoadingGender = true;
             return {
-                ...state,
-                isLoggedIn: true,
-                adminInfo: action.adminInfo
-            }
-        case actionTypes.ADMIN_LOGIN_FAIL:
+                ...copyState,
+            };
+        case actionTypes.FETCH_GENDER_SUCCESS:
+            copyState.genders = action.data;
+            copyState.isLoadingGender = false;
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
-            }
-        case actionTypes.PROCESS_LOGOUT:
+                ...copyState,
+            };
+        case actionTypes.FETCH_GENDER_FAIDED:
+            copyState.isLoadingGender = false;
+            copyState.genders = [];
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
-            }
+                ...copyState,
+            };
+        case actionTypes.FETCH_POSITION_START:
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_POSITION_SUCCESS:
+            copyState.positions = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_POSITION_FAIDED:
+            copyState.positions = [];
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ROLE_START:
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ROLE_SUCCESS:
+            copyState.roles = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ROLE_FAIDED:
+            copyState.roles = [];
+            return {
+                ...copyState,
+            };
         default:
-            return state;
+            return copyState;
     }
-}
+};
 
-export default appReducer;
+export default adminReducer;
