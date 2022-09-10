@@ -19,7 +19,6 @@ class ModalEditUser extends Component {
 
     componentDidMount() {
         let user = this.props.currentUser;
-        console.log("check user", user);
         if (user && !_.isEmpty(user)) {
             this.setState({
                 id: user.id,
@@ -30,7 +29,6 @@ class ModalEditUser extends Component {
                 address: user.address,
             });
         }
-        console.log("didmout ", this.props.currentUser);
     }
 
     toggle = () => {
@@ -78,7 +76,6 @@ class ModalEditUser extends Component {
     };
 
     render() {
-        console.log("Check props from ", this.props);
         return (
             <Modal
                 isOpen={this.props.isOpen}

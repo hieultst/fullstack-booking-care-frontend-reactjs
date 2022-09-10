@@ -81,11 +81,9 @@ class UserManage extends Component {
         } catch (error) {
             console.log(error);
         }
-        console.log("Delete user", user);
     };
 
     handleEditUser = (user) => {
-        console.log("check edit user", user);
         this.setState({
             isOpentModalEditUser: true,
             userEdit: user,

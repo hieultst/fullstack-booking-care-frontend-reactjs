@@ -5,6 +5,7 @@ import {
     createNewUserService,
     getAllUsers,
     deleteUserService,
+    editUserService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -131,6 +132,33 @@ export const fetchAllUserSuccess = (data) => ({
 
 export const fetchAllUserFailed = () => ({
     type: actionTypes.FETCH_ALL_USER_FAILED,
+});
+
+export const editAUser = (user) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editUserService(user);
+            if (res && res.errCode === 0) {
+                toast.success("Update user success!");
+                dispatch(editUserSuccess());
+                dispatch(fetchAllUserStart());
+            } else {
+                toast.error("Update user error!");
+                dispatch(editUserFailed());
+            }
+        } catch (error) {
+            toast.error("Update user error!");
+            dispatch(editUserFailed());
+        }
+    };
+};
+
+export const editUserSuccess = () => ({
+    type: actionTypes.EDIT_USER_SUCCESS,
+});
+
+export const editUserFailed = () => ({
+    type: actionTypes.EDIT_USER_FAILED,
 });
 
 export const deleteAUser = (userId) => {
