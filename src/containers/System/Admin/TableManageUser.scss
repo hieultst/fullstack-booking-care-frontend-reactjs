@@ -1,0 +1,61 @@
+.table-manage-user {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+    td,
+    th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    .btn-edit {
+        color: rgb(228, 151, 35);
+
+        &:hover {
+            color: rgb(228, 151, 35);
+        }
+    }
+
+    .btn {
+        border: none;
+        outline: none;
+        background: transparent;
+
+        &:hover {
+            background: transparent;
+        }
+
+        &+.btn {
+            margin-left: 20px;
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .btn-delete {
+        color: rgba(255, 63, 99, 0.71);
+
+        &:hover {
+            color: rgba(255, 63, 99, 0.71);
+        }
+    }
+}

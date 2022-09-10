@@ -4,7 +4,8 @@ const initialState = {
     isLoadingGender: false,
     genders: [],
     roles: [],
-    position: [],
+    positions: [],
+    users: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -41,10 +42,6 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...copyState,
             };
-        case actionTypes.FETCH_ROLE_START:
-            return {
-                ...copyState,
-            };
         case actionTypes.FETCH_ROLE_SUCCESS:
             copyState.roles = action.data;
             return {
@@ -52,6 +49,16 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_ROLE_FAILED:
             copyState.roles = [];
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ALL_USER_SUCCESS:
+            copyState.users = action.users;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ALL_USER_FAILED:
+            copyState.users = [];
             return {
                 ...copyState,
             };
