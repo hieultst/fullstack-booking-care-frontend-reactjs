@@ -47,7 +47,7 @@ class UserRedux extends Component {
                 genderArr: this.props.genderRedux,
                 gender:
                     arrGenders && arrGenders.length > 0
-                        ? arrGenders[0].key
+                        ? arrGenders[0].keyMap
                         : "",
             });
         }
@@ -57,7 +57,7 @@ class UserRedux extends Component {
                 positionArr: this.props.positionRedux,
                 position:
                     arrPositions && arrPositions.length > 0
-                        ? arrPositions[0].key
+                        ? arrPositions[0].keyMap
                         : "",
             });
         }
@@ -65,7 +65,7 @@ class UserRedux extends Component {
             let arrRoles = this.props.roleRedux;
             this.setState({
                 roleArr: this.props.roleRedux,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
             });
         }
 
@@ -82,13 +82,13 @@ class UserRedux extends Component {
                 address: "",
                 gender:
                     arrGenders && arrGenders.length > 0
-                        ? arrGenders[0].key
+                        ? arrGenders[0].keyMap
                         : "",
                 position:
                     arrPositions && arrPositions.length > 0
-                        ? arrPositions[0].key
+                        ? arrPositions[0].keyMap
                         : "",
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
                 avatar: "",
                 action: CRUD_ACTIONS.CREATE,
                 previewImgUrl: "",
@@ -341,7 +341,7 @@ class UserRedux extends Component {
                                             return (
                                                 <option
                                                     key={index}
-                                                    value={item.key}
+                                                    value={item.keyMap}
                                                 >
                                                     {language === LANGUAGES.VI
                                                         ? item.valueVi
@@ -368,7 +368,7 @@ class UserRedux extends Component {
                                             return (
                                                 <option
                                                     key={index}
-                                                    value={item.key}
+                                                    value={item.keyMap}
                                                 >
                                                     {language === LANGUAGES.VI
                                                         ? item.valueVi
@@ -395,7 +395,7 @@ class UserRedux extends Component {
                                             return (
                                                 <option
                                                     key={index}
-                                                    value={item.key}
+                                                    value={item.keyMap}
                                                 >
                                                     {language === LANGUAGES.VI
                                                         ? item.valueVi

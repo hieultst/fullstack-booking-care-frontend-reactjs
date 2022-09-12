@@ -6,6 +6,7 @@ import {
     getAllUsers,
     deleteUserService,
     editUserService,
+    getTopDoctorHomeService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -92,6 +93,7 @@ export const createNewUser = (data) => {
                 dispatch(saveUserSuccess());
                 dispatch(fetchAllUserStart());
             } else {
+                toast.warn(res.errMessage);
                 dispatch(saveUserFailed());
             }
         } catch (error) {
@@ -186,4 +188,29 @@ export const deleteUserSuccess = () => ({
 
 export const deleteUserFailed = () => ({
     type: actionTypes.DELETE_USER_FAILED,
+});
+
+export const fetchTopDoctor = (limit) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopDoctorHomeService("5");
+            if (res && res.errCode === 0) {
+                dispatch(fetchTopDoctorSuccess(res.data));
+            } else {
+                dispatch(fetchTopDoctorFailed());
+            }
+        } catch (error) {
+            console.log("Erorr fetch top doctor failed: ", error);
+            dispatch(fetchTopDoctorFailed());
+        }
+    };
+};
+
+export const fetchTopDoctorSuccess = (topDoctorData) => ({
+    type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+    data: topDoctorData,
+});
+
+export const fetchTopDoctorFailed = () => ({
+    type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
 });
