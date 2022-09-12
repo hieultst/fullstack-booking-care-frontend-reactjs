@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { FormattedMessage } from "react-intl";
 
 import "./OutstandingDoctor.scss";
 import * as actions from "../../../store/actions";
@@ -34,9 +35,15 @@ class OutstandingDoctor extends Component {
             <div className="section outstanding-doctor">
                 <div className="section-container">
                     <div className="section-header">
-                        <h2>Bác sĩ nổi bật tuần qua</h2>
+                        <h2>
+                            <FormattedMessage
+                                id={"home-page.outstanding-doctor"}
+                            />
+                        </h2>
                         <div className="section-more">
-                            <a>Xem thêm</a>
+                            <a>
+                                <FormattedMessage id={"home-page.more-info"} />
+                            </a>
                         </div>
                     </div>
                     <div className="section-body">
@@ -51,7 +58,7 @@ class OutstandingDoctor extends Component {
                                             "base64"
                                         ).toString("binary");
                                     }
-                                    let nameVi = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
+                                    let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                                     let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                                     return (
                                         <div

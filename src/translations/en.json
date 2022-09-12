@@ -52,7 +52,7 @@
         "edit": "Edit user"
     },
     "home-page":{
-        "outstanding-doctor": "Outstanding doctor",
-        "load-more": "Load more"
+        "outstanding-doctor": "Last week's featured doctor",
+        "more-info": "More info"
     }
 }

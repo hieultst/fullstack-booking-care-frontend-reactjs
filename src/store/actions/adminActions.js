@@ -193,7 +193,7 @@ export const deleteUserFailed = () => ({
 export const fetchTopDoctor = (limit) => {
     return async (dispatch, getState) => {
         try {
-            let res = await getTopDoctorHomeService("5");
+            let res = await getTopDoctorHomeService("25");
             if (res && res.errCode === 0) {
                 dispatch(fetchTopDoctorSuccess(res.data));
             } else {
