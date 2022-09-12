@@ -51,6 +51,44 @@
         }
 
         .section-body {
+
+            .slick-arrow.slick-next,
+            .slick-arrow.slick-prev {
+                border: 2px solid #d7d7d7;
+                width: 50px;
+                height: 50px;
+                color: transparent;
+                outline: none;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                opacity: 0.75;
+                transition: all 0.2s;
+                background-color: white;
+                z-index: 3;
+
+                &:hover {
+                    background: #fff;
+                    opacity: 1;
+                }
+
+                &::before {
+                    font-size: 0;
+                }
+
+                i {
+                    background: transparent;
+                    padding: 10px;
+                    font-size: 20px;
+                    color: #959595;
+                    -webkit-font-smoothing: antialiased;
+                }
+            }
+
+            .slick-disabled {
+                display: none;
+            }
+
             .section-item {
                 height: 100%;
                 cursor: pointer;

@@ -10,17 +10,17 @@ import OutstandingDoctor from "./Section/OutstandingDoctor";
 import "./HomePage.scss";
 
 const CustomNextButton = (props) => {
-    const { onClick, icon, classCss } = props;
+    const { onClick, icon, className } = props;
     return (
-        <button className={classCss} onClick={onClick}>
+        <button className={className} onClick={onClick}>
             {icon}
         </button>
     );
 };
 const CustomPrevButton = (props) => {
-    const { onClick, icon, classCss } = props;
+    const { onClick, icon, className } = props;
     return (
-        <button className={classCss} onClick={onClick}>
+        <button className={className} onClick={onClick}>
             {icon}
         </button>
     );
@@ -30,19 +30,17 @@ class HomePage extends Component {
     render() {
         let settings = {
             dots: false,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
             nextArrow: (
                 <CustomNextButton
-                    classCss={"custom-btn next-btn"}
                     icon={<i className="fas fa-chevron-right"></i>}
                 />
             ),
             prevArrow: (
                 <CustomPrevButton
-                    classCss={"custom-btn prev-btn"}
                     icon={<i className="fas fa-chevron-left"></i>}
                 />
             ),
