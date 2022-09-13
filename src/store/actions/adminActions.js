@@ -7,6 +7,8 @@ import {
     deleteUserService,
     editUserService,
     getTopDoctorHomeService,
+    getAllDoctors,
+    saveDetailDoctorService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -213,4 +215,56 @@ export const fetchTopDoctorSuccess = (topDoctorData) => ({
 
 export const fetchTopDoctorFailed = () => ({
     type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+});
+
+export const fetchAllDoctors = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctors();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllDoctorsSuccess(res.data));
+            } else {
+                dispatch(fetchAllDoctorsFailed());
+            }
+        } catch (error) {
+            console.log("Erorr fetch all doctor failed: ", error);
+            dispatch(fetchAllDoctorsFailed());
+        }
+    };
+};
+
+export const fetchAllDoctorsSuccess = (allDoctors) => ({
+    type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+    data: allDoctors,
+});
+
+export const fetchAllDoctorsFailed = () => ({
+    type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+});
+
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDetailDoctorService(data);
+            if (res && res.errCode === 0) {
+                toast.success("Save detail infor doctor success!");
+                dispatch(saveDetailDoctorSuccess());
+            } else {
+                toast.error("Save detail infor doctor error!");
+                dispatch(saveDetailDoctorFailed());
+            }
+        } catch (error) {
+            toast.error("Save detail infor doctor error!");
+            console.log("Erorr save detail doctor failed: ", error);
+            dispatch(saveDetailDoctorFailed());
+        }
+    };
+};
+
+export const saveDetailDoctorSuccess = () => ({
+    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+});
+
+export const saveDetailDoctorFailed = () => ({
+    type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
 });
