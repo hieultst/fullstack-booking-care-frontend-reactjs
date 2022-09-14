@@ -9,6 +9,7 @@ import {
     getTopDoctorHomeService,
     getAllDoctors,
     saveDetailDoctorService,
+    getDetailInforDoctorService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -267,4 +268,28 @@ export const saveDetailDoctorSuccess = () => ({
 
 export const saveDetailDoctorFailed = () => ({
     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+});
+
+export const fetchDetailInforDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getDetailInforDoctorService(data);
+            if (res && res.errCode === 0) {
+                dispatch(fetchDetailInforDoctorSuccess());
+            } else {
+                dispatch(fetchDetailInforDoctorFailed());
+            }
+        } catch (error) {
+            console.log("Erorr save detail doctor failed: ", error);
+            dispatch(fetchDetailInforDoctorFailed());
+        }
+    };
+};
+
+export const fetchDetailInforDoctorSuccess = () => ({
+    type: actionTypes.FETCH_DETAIL_INFOR_DOCTOR_SUCCESS,
+});
+
+export const fetchDetailInforDoctorFailed = () => ({
+    type: actionTypes.FETCH_DETAIL_INFOR_DOCTOR_FAILED,
 });

@@ -114,8 +114,10 @@
                     font-size: 13px;
                     color: #111;
                     margin: 0;
+                }
 
-                    &:hover {
+                &:hover {
+                    h3 {
                         color: #45c3d2;
                     }
                 }

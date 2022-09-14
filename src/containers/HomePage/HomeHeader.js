@@ -103,103 +103,108 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="home-header-banner">
-                    <div className="content-up">
-                        <div className="title-top">
-                            <FormattedMessage id="banner.medical-background" />
+                {this.props.isShowBanner === true && (
+                    <div className="home-header-banner">
+                        <div className="content-up">
+                            <div className="title-top">
+                                <FormattedMessage id="banner.medical-background" />
+                            </div>
+                            <div className="title-bottom">
+                                <FormattedMessage id="banner.comprehensive-health" />
+                            </div>
+                            <div className="search">
+                                <i className="fas fa-search"></i>
+                                <input
+                                    type="text"
+                                    className="search-input"
+                                    placeholder="Tìm chuyên khoa khám bệnh"
+                                />
+                            </div>
                         </div>
-                        <div className="title-bottom">
-                            <FormattedMessage id="banner.comprehensive-health" />
-                        </div>
-                        <div className="search">
-                            <i className="fas fa-search"></i>
-                            <input
-                                type="text"
-                                className="search-input"
-                                placeholder="Tìm chuyên khoa khám bệnh"
-                            />
+                        <div className="content-down">
+                            <div className="options">
+                                <div className="option-child">
+                                    <div className="option-icon">
+                                        <div className="option-img">
+                                            <img
+                                                src={khamChuyenKhoa}
+                                                alt="Khám chuyên khoa"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="option-text">
+                                        <FormattedMessage id="banner.specialist-examination" />
+                                    </div>
+                                </div>
+                                <div className="option-child">
+                                    <div className="option-icon">
+                                        <div className="option-img">
+                                            <img
+                                                src={khamTuXa}
+                                                alt="Khám từ xa"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="option-text">
+                                        <FormattedMessage id="banner.remote-examination" />
+                                    </div>
+                                </div>
+                                <div className="option-child">
+                                    <div className="option-icon">
+                                        <div className="option-img">
+                                            <img
+                                                src={khamTongQuat}
+                                                alt="Khám tổng quát"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="option-text">
+                                        <FormattedMessage id="banner.remote-examination" />
+                                    </div>
+                                </div>
+                                <div className="option-child">
+                                    <div className="option-icon">
+                                        <div className="option-img">
+                                            <img
+                                                src={xetNghiemYHoc}
+                                                alt="Xét nghiệm y học"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="option-text">
+                                        <FormattedMessage id="banner.medical-test" />
+                                    </div>
+                                </div>
+                                <div className="option-child">
+                                    <div className="option-icon">
+                                        <div className="option-img">
+                                            <img
+                                                src={sucKhoeTinhThan}
+                                                alt="Sức khỏe tinh thần"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="option-text">
+                                        <FormattedMessage id="banner.mental-health" />
+                                    </div>
+                                </div>
+                                <div className="option-child">
+                                    <div className="option-icon">
+                                        <div className="option-img">
+                                            <img
+                                                src={khamNhaKhoa}
+                                                alt="Khám nha khoa"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="option-text">
+                                        <FormattedMessage id="banner.dental-examination" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="content-down">
-                        <div className="options">
-                            <div className="option-child">
-                                <div className="option-icon">
-                                    <div className="option-img">
-                                        <img
-                                            src={khamChuyenKhoa}
-                                            alt="Khám chuyên khoa"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="option-text">
-                                    <FormattedMessage id="banner.specialist-examination" />
-                                </div>
-                            </div>
-                            <div className="option-child">
-                                <div className="option-icon">
-                                    <div className="option-img">
-                                        <img src={khamTuXa} alt="Khám từ xa" />
-                                    </div>
-                                </div>
-                                <div className="option-text">
-                                    <FormattedMessage id="banner.remote-examination" />
-                                </div>
-                            </div>
-                            <div className="option-child">
-                                <div className="option-icon">
-                                    <div className="option-img">
-                                        <img
-                                            src={khamTongQuat}
-                                            alt="Khám tổng quát"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="option-text">
-                                    <FormattedMessage id="banner.remote-examination" />
-                                </div>
-                            </div>
-                            <div className="option-child">
-                                <div className="option-icon">
-                                    <div className="option-img">
-                                        <img
-                                            src={xetNghiemYHoc}
-                                            alt="Xét nghiệm y học"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="option-text">
-                                    <FormattedMessage id="banner.medical-test" />
-                                </div>
-                            </div>
-                            <div className="option-child">
-                                <div className="option-icon">
-                                    <div className="option-img">
-                                        <img
-                                            src={sucKhoeTinhThan}
-                                            alt="Sức khỏe tinh thần"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="option-text">
-                                    <FormattedMessage id="banner.mental-health" />
-                                </div>
-                            </div>
-                            <div className="option-child">
-                                <div className="option-icon">
-                                    <div className="option-img">
-                                        <img
-                                            src={khamNhaKhoa}
-                                            alt="Khám nha khoa"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="option-text">
-                                    <FormattedMessage id="banner.dental-examination" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                )}
             </React.Fragment>
         );
     }

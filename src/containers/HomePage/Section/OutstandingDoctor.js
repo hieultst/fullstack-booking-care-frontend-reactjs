@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import { withRouter } from "react-router";
 
 import "./OutstandingDoctor.scss";
 import * as actions from "../../../store/actions";
@@ -27,6 +28,12 @@ class OutstandingDoctor extends Component {
     componentDidMount() {
         this.props.loadTopDoctors();
     }
+
+    handleViewDetailDoctor = (doctor) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-doctor/${doctor.id}`);
+        }
+    };
 
     render() {
         let arrDoctors = this.state.arrDoctors;
@@ -64,6 +71,11 @@ class OutstandingDoctor extends Component {
                                         <div
                                             className="section-item"
                                             key={index}
+                                            onClick={() =>
+                                                this.handleViewDetailDoctor(
+                                                    item
+                                                )
+                                            }
                                         >
                                             <div className="section-item-content">
                                                 <div
@@ -107,4 +119,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor)
+);
