@@ -34,6 +34,9 @@
             "manage-specialty": "Quản lý chuyên khoa",
             "manage-handbook": "Quản lý cẩm nan",
             "handbook": "Cẩm nan"
+        },
+        "doctor": {
+            "manage-schedule": "Quản lý kế hoạch khám bệnh"
         }
     },
     "manage-user": {
