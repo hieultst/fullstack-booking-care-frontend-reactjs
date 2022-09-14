@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import HomeHeader from "../../HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import * as actions from "../../../store/actions";
-import { getDetailInforDoctorService } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
 
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            detailDoctor: {},
+            detailDoctor: [],
         };
     }
 
@@ -21,21 +20,19 @@ class DetailDoctor extends Component {
             this.props.match.params.id
         ) {
             let id = this.props.match.params.id;
-            // this.props.fetchDetailInforDoctor(id);
-            let res = await getDetailInforDoctorService(id);
-            if (res && res.errCode === 0) {
-                this.setState({
-                    detailDoctor: res.data,
-                });
-            }
-            console.log(res);
+            this.props.fetchDetailInforDoctor(id);
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {}
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.detailDoctor !== this.props.detailDoctor) {
+            this.setState({
+                detailDoctor: this.props.detailDoctor,
+            });
+        }
+    }
 
     render() {
-        console.log("check doctor: ", this.state);
         let { detailDoctor } = this.state;
         let { language } = this.props;
         let nameVi = "",
@@ -43,7 +40,6 @@ class DetailDoctor extends Component {
         if (detailDoctor && detailDoctor.positionData) {
             nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
             nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
-            console.log("check name:", nameVi, nameEn);
         }
         return (
             <>
@@ -102,13 +98,14 @@ class DetailDoctor extends Component {
 const mapStateToProps = (state) => {
     return {
         language: state.app.language,
+        detailDoctor: state.admin.detailDoctor,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // fetchDetailInforDoctor: (id) =>
-        //     dispatch(actions.fetchDetailInforDoctor(id)),
+        fetchDetailInforDoctor: (id) =>
+            dispatch(actions.fetchDetailInforDoctor(id)),
     };
 };
 

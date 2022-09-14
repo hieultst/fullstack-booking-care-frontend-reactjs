@@ -10,6 +10,7 @@ import {
     getAllDoctors,
     saveDetailDoctorService,
     getDetailInforDoctorService,
+    // getMarkdownService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -275,21 +276,47 @@ export const fetchDetailInforDoctor = (data) => {
         try {
             let res = await getDetailInforDoctorService(data);
             if (res && res.errCode === 0) {
-                dispatch(fetchDetailInforDoctorSuccess());
+                dispatch(fetchDetailInforDoctorSuccess(res.data));
             } else {
                 dispatch(fetchDetailInforDoctorFailed());
             }
         } catch (error) {
-            console.log("Erorr save detail doctor failed: ", error);
+            console.log("Erorr fetch detail infor doctor failed: ", error);
             dispatch(fetchDetailInforDoctorFailed());
         }
     };
 };
 
-export const fetchDetailInforDoctorSuccess = () => ({
+export const fetchDetailInforDoctorSuccess = (data) => ({
     type: actionTypes.FETCH_DETAIL_INFOR_DOCTOR_SUCCESS,
+    data: data,
 });
 
 export const fetchDetailInforDoctorFailed = () => ({
     type: actionTypes.FETCH_DETAIL_INFOR_DOCTOR_FAILED,
 });
+
+// export const fetchMarkdown = (doctorId) => {
+//     return async (dispatch, getState) => {
+//         try {
+//             let res = await getMarkdownService(doctorId);
+//             if (res && res.errCode === 0) {
+//                 dispatch(fetchMarkdownSuccess(res.data));
+//             } else {
+//                 dispatch(fetchMarkdownFailed());
+//             }
+//         } catch (error) {
+//             console.log("Erorr markdown failed: ", error);
+//             dispatch(fetchMarkdownFailed());
+//         }
+//     };
+// };
+
+// export const fetchMarkdownSuccess = (mardownData) => ({
+//     type: actionTypes.FETCH_MARKDOWN_SUCCESS,
+//     data: mardownData,
+// });
+
+// export const fetchMarkdownFailed = () => ({
+//     type: actionTypes.FETCH_MARKDOWN_FAILED,
+// });

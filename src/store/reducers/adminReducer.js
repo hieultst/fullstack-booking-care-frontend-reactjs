@@ -9,6 +9,7 @@ const initialState = {
     topDoctors: [],
     allDoctors: [],
     detailDoctor: [],
+    // markdown: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -95,6 +96,16 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...copyState,
             };
+        // case actionTypes.FETCH_MARKDOWN_SUCCESS:
+        //     copyState.mardown = action.data;
+        //     return {
+        //         ...copyState,
+        //     };
+        // case actionTypes.FETCH_MARKDOWN_FAILED:
+        //     copyState.mardown = [];
+        //     return {
+        //         ...copyState,
+        //     };
         default:
             return copyState;
     }

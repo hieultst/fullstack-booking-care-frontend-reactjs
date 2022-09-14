@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
+
 import "./HomeHeader.scss";
 import khamChuyenKhoa from "../../assets/khamchuyenkhoa.png";
 import khamNhaKhoa from "../../assets/khamnhakhoa.png";
@@ -19,6 +21,12 @@ class HomeHeader extends Component {
         // fire redux event: actions
     };
 
+    returnHome = () => {
+        if (this.props.history) {
+            this.props.history.push(`/home`);
+        }
+    };
+
     render() {
         let language = this.props.language;
         return (
@@ -28,7 +36,12 @@ class HomeHeader extends Component {
                         <div className="left-content">
                             <i className="fas fa-bars"></i>
                             <div className="header-logo">
-                                <img src={logo} />
+                                <img
+                                    src={logo}
+                                    onClick={() => {
+                                        this.returnHome();
+                                    }}
+                                />
                             </div>
                         </div>
                         <div className="center-content">
@@ -225,4 +238,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(HomeHeader)
+);
