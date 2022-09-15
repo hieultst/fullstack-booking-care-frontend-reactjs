@@ -11,6 +11,7 @@ import {
     saveDetailDoctorService,
     getDetailInforDoctorService,
     // getMarkdownService,
+    // saveBulkScheduleDoctorService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -345,3 +346,30 @@ export const fetchAllcodeScheduleTimeSuccess = (dataTime) => ({
 export const fetchAllcodeScheduleTimeFailed = () => ({
     type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
 });
+
+// export const saveBulkScheduleDoctor = (data) => {
+//     return async (dispatch, getState) => {
+//         try {
+//             let res = await saveBulkScheduleDoctorService(data);
+//             if (res && res.errCode === 0) {
+//                 toast.success("Save bulk schedule doctor success!");
+//                 dispatch(saveBulkScheduleDoctorSuccess());
+//             } else {
+//                 toast.error("Save bulk schedule doctor error!");
+//                 dispatch(saveBulkScheduleDoctorFailed());
+//             }
+//         } catch (error) {
+//             toast.error("Save bulk schedule doctor error!");
+//             console.log("Erorr save bulk schedule doctor failed: ", error);
+//             dispatch(saveBulkScheduleDoctorFailed());
+//         }
+//     };
+// };
+
+// export const saveBulkScheduleDoctorSuccess = () => ({
+//     type: actionTypes.SAVE_BULK_SCHEDULE_DOCTOR_SUCCESS,
+// });
+
+// export const saveBulkScheduleDoctorFailed = () => ({
+//     type: actionTypes.SAVE_BULK_SCHEDULE_DOCTOR_FAILED,
+// });
