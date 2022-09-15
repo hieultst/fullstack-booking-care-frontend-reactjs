@@ -64,6 +64,12 @@ class Login extends Component {
         });
     };
 
+    handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            this.handleLogin();
+        }
+    };
+
     render() {
         return (
             <div className="login-wrapper">
@@ -97,6 +103,9 @@ class Login extends Component {
                                     value={this.state.password}
                                     onChange={(event) =>
                                         this.handleOnChangePassword(event)
+                                    }
+                                    onKeyDown={(event) =>
+                                        this.handleKeyDown(event)
                                     }
                                 />
                                 <span className="login-focus"></span>
