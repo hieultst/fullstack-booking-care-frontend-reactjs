@@ -1,0 +1,17 @@
+.doctor-schedule-container {
+    .all-schedule {
+        select {
+            background: transparent;
+            border: none;
+            color: #337ab7;
+            border-bottom: 1px solid #999;
+            border-radius: 0;
+            font-weight: bold;
+            padding: 3px;
+            user-select: none;
+            outline: none;
+        }
+    }
+
+    .all-available-time {}
+}
