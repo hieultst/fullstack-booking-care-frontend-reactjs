@@ -37,13 +37,15 @@
 
     .schedule-doctor {
         padding: 0 197.1px;
+        margin-bottom: 25px;
 
         .content-left {
             width: 55%;
         }
 
         .content-right {
-            width: 55%;
+            width: 45%;
+            border-left: 1px solid #eee;
         }
     }
 
