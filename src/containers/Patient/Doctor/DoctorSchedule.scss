@@ -33,6 +33,27 @@
         .time-content {
             display: flex;
 
+            .content-left {
+                width: 55%;
+                padding-bottom: 10px;
+                min-height: 120px;
+            }
+
+            .content-right {
+                width: 45%;
+                border-left: 1px solid #eee;
+            }
+
+            .book-free {
+                padding-top: 10px;
+                font-size: 12px;
+                color: #333;
+
+                i {
+                    padding: 0 5px;
+                }
+            }
+
             .btn-schedule {
                 background: #fff04b;
                 margin-top: 10px;
@@ -47,8 +68,14 @@
                 font-weight: bolder;
                 position: relative;
                 border: none;
-                min-width: 22%;
 
+                &.btn-vi {
+                    min-width: 22%;
+                }
+
+                &.btn-en {
+                    min-width: 29%;
+                }
 
                 &:hover {
                     text-decoration: none;
