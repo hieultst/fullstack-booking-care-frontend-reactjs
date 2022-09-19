@@ -11,6 +11,8 @@ const initialState = {
     detailDoctor: [],
     // markdown: [],
     allScheduleTime: [],
+
+    allRequiredDoctorInfor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -114,6 +116,16 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
             copyState.allScheduleTime = [];
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS:
+            copyState.allRequiredDoctorInfor = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED:
+            copyState.allRequiredDoctorInfor = [];
             return {
                 ...copyState,
             };

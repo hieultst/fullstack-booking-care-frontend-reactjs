@@ -72,5 +72,14 @@
             "and-book": "and book",
             "book-fee": " (Booking free 0"
         }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "More doctor information",
+            "select-doctor": "Select doctor",
+            "intro": "Introduction: ",
+            "save": "Save information",
+            "add": "Create information"
+        }
     }
 }

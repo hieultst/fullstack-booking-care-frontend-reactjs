@@ -72,5 +72,14 @@
             "and-book": "và đặt",
             "book-fee": " (Phí đặt lịch 0"
         }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Thêm thông tin bác sĩ",
+            "select-doctor": "Chọn bác sĩ",
+            "intro": "Thông tin giới thiệu: ",
+            "save": "Lưu thông tin",
+            "add": "Tạo thông tin"
+        }
     }
 }
