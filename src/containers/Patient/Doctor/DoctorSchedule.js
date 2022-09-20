@@ -110,6 +110,7 @@ class DoctorSchedule extends Component {
     render() {
         let { allDays, allAvalableTime } = this.state;
         let { language } = this.props;
+
         return (
             <div className="doctor-schedule-container">
                 <div className="all-schedule">
@@ -189,7 +190,9 @@ class DoctorSchedule extends Component {
                         </div>
                         <div className="content-right">
                             <DoctorExtraInfor
-                                doctorIdFromParent={this.state.currentDoctorId}
+                                doctorIdFromParent={
+                                    this.props.doctorIdFromParent
+                                }
                             />
                         </div>
                     </div>

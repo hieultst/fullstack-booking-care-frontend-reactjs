@@ -71,6 +71,14 @@
             "choose": "Chọn",
             "and-book": "và đặt",
             "book-fee": " (Phí đặt lịch 0"
+        },
+        "extra-infor-doctor": {
+            "text-address":"Địa chỉ khám",
+            "price-show": "Giá khám: ",
+            "price": "Giá khám",
+            "view-detail":"Xem chi tiết",
+            "hide-detail": "Ẩn bảng giá",
+            "payment": "Bệnh viện có thanh toán bằng các hình thức: "
         }
     },
     "admin": {

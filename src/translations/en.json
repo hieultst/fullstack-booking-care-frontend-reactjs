@@ -71,6 +71,14 @@
             "choose": "Choose",
             "and-book": "and book",
             "book-fee": " (Booking free 0"
+        },
+        "extra-infor-doctor": {
+            "text-address":"Clinic's address",
+            "price-show": "Price: ",
+            "price": "Price",
+            "view-detail":"View detail",
+            "hide-detail": "Hide price list",
+            "payment": "The hospital has payment in various forms: "
         }
     },
     "admin": {
