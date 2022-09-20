@@ -9,6 +9,7 @@ import "./DoctorSchedule.scss";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import { getScheduleDoctorByDate } from "../../../services/userService";
+import DoctorExtraInfor from "./DoctorExtraInfor";
 
 class DoctorSchedule extends Component {
     constructor(props) {
@@ -186,7 +187,11 @@ class DoctorSchedule extends Component {
                                 </div>
                             )}
                         </div>
-                        <div className="content-right"></div>
+                        <div className="content-right">
+                            <DoctorExtraInfor
+                                doctorIdFromParent={this.state.currentDoctorId}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
