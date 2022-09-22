@@ -5,6 +5,7 @@ import { Modal } from "reactstrap";
 import _ from "lodash";
 import Select from "react-select";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 import "./BookingModal.scss";
 import ProfileDoctor from "../ProfileDoctor";
@@ -96,6 +97,8 @@ class BookingModal extends Component {
 
     handleConfirmBooking = async () => {
         let date = new Date(this.state.birthday).getTime();
+        let timeString = this.buildDataBooking(this.props.dataTime);
+        let doctorName = this.buildDoctorName(this.props.dataTime);
         let res = await postPatientBookingAppointment({
             fullName: this.state.fullName,
             phoneNumber: this.state.phoneNumber,
@@ -106,6 +109,9 @@ class BookingModal extends Component {
             doctorId: this.state.doctorId,
             selectedGender: this.state.selectedGender.value,
             timeType: this.state.timeType,
+            language: this.props.language,
+            timeString: timeString,
+            doctorName: doctorName,
         });
 
         if (res && res.errCode === 0) {
@@ -116,13 +122,49 @@ class BookingModal extends Component {
         }
     };
 
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    buildDataBooking = (dataTime) => {
+        let { language } = this.props;
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time =
+                language === LANGUAGES.VI
+                    ? dataTime.timeTypeData.valueVi
+                    : dataTime.timeTypeData.valueEn;
+            let date =
+                language === LANGUAGES.VI
+                    ? moment
+                          .unix(+dataTime.date / 1000)
+                          .format("dddd - DD/MM/YYYY")
+                    : moment
+                          .unix(+dataTime.date / 1000)
+                          .locale("en")
+                          .format("dddd - MM/DD/YYYY");
+            return `${time} - ${this.capitalizeFirstLetter(date)}`;
+        }
+        return "";
+    };
+
+    buildDoctorName = (dataTime) => {
+        let { language } = this.props;
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let name =
+                language === LANGUAGES.VI
+                    ? `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}`
+                    : `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`;
+            return name;
+        }
+        return "";
+    };
+
     render() {
         let { language, isOpenModal, closeBookingModal, dataTime } = this.props;
         let doctorId = "";
         if (dataTime && !_.isEmpty(dataTime)) {
             doctorId = dataTime.doctorId;
         }
-        console.log("Check state: ", this.state);
         return (
             <Modal
                 isOpen={isOpenModal}
