@@ -59,6 +59,12 @@ class ManageSpecialty extends Component {
         let res = await createNewSpecialty(this.state);
         if (res && res.errCode === 0) {
             toast.success("Add new specialty succeed !");
+            this.setState({
+                name: "",
+                imageBase64: "",
+                descriptionHTML: "",
+                descriptionMarkdown: "",
+            });
         } else {
             toast.error("Something wrong ... !");
             console.log(">> ERROR: ", res);
@@ -101,7 +107,7 @@ class ManageSpecialty extends Component {
                             style={{ height: "500px" }}
                             renderHTML={(text) => mdParser.render(text)}
                             onChange={this.handleEditorChange}
-                            value={this.state.contentMarkdown}
+                            value={this.state.descriptionMarkdown}
                         />
                     </div>
                     <div className="col-12 mb-5">
