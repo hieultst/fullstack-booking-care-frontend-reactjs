@@ -41,7 +41,7 @@ class VerifyEmail extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.language !== prevState.language) {
+        if (this.props.language !== prevProps.language) {
         }
     }
 

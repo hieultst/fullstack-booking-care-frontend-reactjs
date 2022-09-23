@@ -146,7 +146,7 @@ class ManageSchedule extends Component {
         return (
             <React.Fragment>
                 <div className="manage-schedule-container">
-                    <div className="m-s-title">
+                    <div className="title">
                         <FormattedMessage id={"manage-schedule.title"} />
                     </div>
                     <div className="container">
