@@ -17,8 +17,14 @@ class DoctorExtraInfor extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         let { language } = this.props;
+        let res = await getExtraDoctorInforById(this.props.doctorIdFromParent);
+        if (res && res.errCode === 0) {
+            this.setState({
+                extraInfor: res.data,
+            });
+        }
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -46,7 +52,6 @@ class DoctorExtraInfor extends Component {
     render() {
         let { language } = this.props;
         let { isShowDetailInfor, extraInfor } = this.state;
-
         return (
             <div className="doctor-extra-infor-container">
                 <div className="content-up">
@@ -176,7 +181,12 @@ class DoctorExtraInfor extends Component {
                                     extraInfor.paymentData &&
                                     language === LANGUAGES.VI
                                         ? extraInfor.paymentData.valueVi
-                                        : extraInfor.paymentData.valueEn}
+                                        : ""}
+                                    {extraInfor &&
+                                    extraInfor.paymentData &&
+                                    language === LANGUAGES.EN
+                                        ? extraInfor.paymentData.valueEn
+                                        : ""}
                                 </div>
                             </div>
                             <div className="hide-price-btn">
