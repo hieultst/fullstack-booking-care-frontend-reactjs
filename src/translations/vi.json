@@ -93,7 +93,8 @@
             "btn-confirm":"Xác nhận",
             "btn-cancel":"Hủy",
             "price-booking": "Miễn phí đặt lịch",
-            "price": "Giá khám: "
+            "price": "Giá khám: ",
+            "view-detail": "Xem thêm"
         }
     },
     "admin": {

@@ -93,7 +93,8 @@
             "btn-confirm":"Confirm",
             "btn-cancel":"Cancel",
             "price-booking": "Free booking",
-            "price": "Price: "
+            "price": "Price: ",
+            "view-detail": "See more"
         }
     },
     "admin": {

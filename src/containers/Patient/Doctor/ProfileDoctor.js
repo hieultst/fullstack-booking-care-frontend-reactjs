@@ -2,6 +2,7 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
+import { Link } from "react-router-dom";
 
 import "./ProfileDoctor.scss";
 import { LANGUAGES } from "../../../utils";
@@ -80,7 +81,14 @@ class ProfileDoctor extends Component {
     }
 
     render() {
-        let { language, isShowDescriptionDoctor, dataTime } = this.props;
+        let {
+            language,
+            isShowDescriptionDoctor,
+            dataTime,
+            isShowLinkDetail,
+            isShowPrice,
+            doctorId,
+        } = this.props;
         let { dataProfile } = this.state;
         let nameVi = "",
             nameEn = "";
@@ -91,16 +99,28 @@ class ProfileDoctor extends Component {
         return (
             <div className="profile-doctor-container">
                 <div className="intro-doctor">
-                    <div
-                        className="content-left"
-                        style={{
-                            backgroundImage: `url(${
-                                dataProfile && dataProfile.image
-                                    ? dataProfile.image
-                                    : ""
-                            })`,
-                        }}
-                    ></div>
+                    <div className="content-left">
+                        <div
+                            className="image-infor-doctor"
+                            style={{
+                                backgroundImage: `url(${
+                                    dataProfile && dataProfile.image
+                                        ? dataProfile.image
+                                        : ""
+                                })`,
+                            }}
+                        ></div>
+                        {isShowLinkDetail === true && (
+                            <div className="view-detail">
+                                <Link to={`/detail-doctor/${doctorId}`}>
+                                    <FormattedMessage
+                                        id={"patient.booking-modal.view-detail"}
+                                    />
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+
                     <div className="content-right">
                         <div className="doctor-name">
                             <h1>
@@ -127,37 +147,40 @@ class ProfileDoctor extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="price">
-                    <FormattedMessage id={"patient.booking-modal.price"} />
-                    {dataProfile &&
-                        dataProfile.Doctor_infor &&
-                        language === LANGUAGES.VI && (
-                            <>
+                {isShowPrice === true && (
+                    <div className="price">
+                        <FormattedMessage id={"patient.booking-modal.price"} />
+                        {dataProfile &&
+                            dataProfile.Doctor_infor &&
+                            language === LANGUAGES.VI && (
+                                <>
+                                    <NumberFormat
+                                        value={
+                                            dataProfile.Doctor_infor.priceData
+                                                .valueVi
+                                        }
+                                        displayType={"text"}
+                                        thousandSeparator={true}
+                                        suffix={""}
+                                    />
+                                    <sup>đ</sup>
+                                </>
+                            )}
+                        {dataProfile &&
+                            dataProfile.Doctor_infor &&
+                            language === LANGUAGES.EN && (
                                 <NumberFormat
                                     value={
                                         dataProfile.Doctor_infor.priceData
-                                            .valueVi
+                                            .valueEn
                                     }
                                     displayType={"text"}
                                     thousandSeparator={true}
-                                    suffix={""}
+                                    suffix={"$"}
                                 />
-                                <sup>đ</sup>
-                            </>
-                        )}
-                    {dataProfile &&
-                        dataProfile.Doctor_infor &&
-                        language === LANGUAGES.EN && (
-                            <NumberFormat
-                                value={
-                                    dataProfile.Doctor_infor.priceData.valueEn
-                                }
-                                displayType={"text"}
-                                thousandSeparator={true}
-                                suffix={"$"}
-                            />
-                        )}
-                </div>
+                            )}
+                    </div>
+                )}
             </div>
         );
     }
