@@ -57,20 +57,20 @@ class ManageClinic extends Component {
     };
 
     handleSaveNewClinic = async () => {
-        // let res = await createNewClinic(this.state);
-        // if (res && res.errCode === 0) {
-        //     toast.success("Add new clinic succeed !");
-        //     this.setState({
-        //         name: "",
-        //         imageBase64: "",
-        // address: "",
-        //         descriptionHTML: "",
-        //         descriptionMarkdown: "",
-        //     });
-        // } else {
-        //     toast.error("Something wrong ... !");
-        //     console.log(">> ERROR: ", res);
-        // }
+        let res = await createNewClinic(this.state);
+        if (res && res.errCode === 0) {
+            toast.success("Add new clinic succeed !");
+            this.setState({
+                name: "",
+                imageBase64: "",
+                address: "",
+                descriptionHTML: "",
+                descriptionMarkdown: "",
+            });
+        } else {
+            toast.error("Something wrong ... !");
+            console.log(">> ERROR: ", res);
+        }
     };
 
     render() {
@@ -79,9 +79,6 @@ class ManageClinic extends Component {
         return (
             <div className="manage-clinic-container">
                 <div className="title">Quản lý phòng khám</div>
-                <div className="btn-add-new-clinic">
-                    <button className="btn btn-primary mb-3">Add new</button>
-                </div>
                 <div className="add-new-clinic row">
                     <div className="col-6 from-group">
                         <label>Tên phòng khám</label>
