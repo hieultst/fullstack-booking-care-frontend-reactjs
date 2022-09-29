@@ -161,7 +161,7 @@ class ModalUser extends Component {
                         }}
                     >
                         Add user
-                    </Button>{" "}
+                    </Button>
                     <Button
                         color="secondary"
                         className="px-3"
