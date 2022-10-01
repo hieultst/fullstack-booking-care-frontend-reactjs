@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import UserManage from "../containers/System/UserManage";
@@ -12,7 +12,7 @@ class System extends Component {
     render() {
         const { systemMenuPath, isLoggedIn } = this.props;
         return (
-            <React.Fragment>
+            <>
                 {isLoggedIn && <Header />}
                 <div className="system-container">
                     <div className="system-list">
@@ -46,7 +46,7 @@ class System extends Component {
                         </Switch>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }

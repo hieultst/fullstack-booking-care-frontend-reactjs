@@ -1,5 +1,3 @@
-@import "../styles/common.scss";
-
 .toast-container {
   .toast-item {
     white-space: pre-wrap;
@@ -25,7 +23,7 @@
     .toast-close {
       position: absolute;
       right: 10px;
-      top:10px;
+      top: 10px;
       color: $common-text-color;
       font-size: $base-size;
       padding: 0;
@@ -50,6 +48,7 @@
         .fixed-scroll-bar {
           height: 50px;
         }
+
         .date {
           float: right;
           font-size: $base-size - 2px;

@@ -34,6 +34,24 @@ class HomePage extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 4,
+            responsive: [
+                {
+                    breakpoint: 1023,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        initialSlide: 2,
+                    },
+                },
+                {
+                    breakpoint: 739,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        initialSlide: 1,
+                    },
+                },
+            ],
             nextArrow: (
                 <CustomNextButton
                     icon={<i className="fas fa-chevron-right"></i>}
@@ -51,7 +69,6 @@ class HomePage extends Component {
                 <Specialty settings={settings} />
                 <MedicalFacility settings={settings} />
                 <OutstandingDoctor settings={settings} />
-                <div className="test-class"></div>
             </div>
         );
     }

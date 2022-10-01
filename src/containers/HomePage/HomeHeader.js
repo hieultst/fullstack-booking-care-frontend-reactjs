@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import "./HomeHeader.scss";
-import khamChuyenKhoa from "../../assets/khamchuyenkhoa.png";
-import khamNhaKhoa from "../../assets/khamnhakhoa.png";
-import khamTongQuat from "../../assets/khamtongquat.png";
-import khamTuXa from "../../assets/khamtuxa.png";
-import sucKhoeTinhThan from "../../assets/suckhoetinhthan.png";
-import xetNghiemYHoc from "../../assets/xetnghiemyhoc.png";
-import logo from "../../assets/logo.svg";
+import khamChuyenKhoa from "../../assets/icons/khamchuyenkhoa.png";
+import khamNhaKhoa from "../../assets/icons/khamnhakhoa.png";
+import khamTongQuat from "../../assets/icons/khamtongquat.png";
+import khamTuXa from "../../assets/icons/khamtuxa.png";
+import sucKhoeTinhThan from "../../assets/icons/suckhoetinhthan.png";
+import xetNghiemYHoc from "../../assets/icons/xetnghiemyhoc.png";
+import logo from "../../assets/images/logo.png";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 
@@ -30,7 +30,7 @@ class HomeHeader extends Component {
     render() {
         let language = this.props.language;
         return (
-            <React.Fragment>
+            <>
                 <div className="home-header-container">
                     <div className="home-header-content">
                         <div className="left-content">
@@ -44,7 +44,7 @@ class HomeHeader extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="center-content">
+                        <div className="center-content hide-on-mobile-tablet">
                             <div className="child-content">
                                 <b>
                                     <FormattedMessage id="home-header.speciality" />
@@ -79,7 +79,7 @@ class HomeHeader extends Component {
                             </div>
                         </div>
                         <div className="right-content">
-                            <div className="support">
+                            <div className="support hide-on-mobile">
                                 <i className="fas fa-question-circle"></i>
                                 <FormattedMessage id="home-header.support" />
                             </div>
@@ -218,7 +218,7 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 )}
-            </React.Fragment>
+            </>
         );
     }
 }

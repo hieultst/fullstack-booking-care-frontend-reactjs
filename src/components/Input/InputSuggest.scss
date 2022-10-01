@@ -1,5 +1,3 @@
-@import "../../styles/common";
-
 .react-autosuggest__suggestions-container {
     min-width: 90%;
     position: absolute;
@@ -23,6 +21,7 @@
     height: 28px;
     line-height: 28px;
     border-bottom: 1px solid $border;
+
     &:hover {
         cursor: pointer;
         background-color: darken($footer-container, 5);
