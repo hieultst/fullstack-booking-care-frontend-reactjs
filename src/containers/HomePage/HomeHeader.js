@@ -52,25 +52,25 @@ class HomeHeader extends Component {
             },
             {
                 title: <FormattedMessage id={"home-header.manual"} />,
-                path: "/cam-nang",
+                path: path.HOMEPAGE,
             },
             {
                 title: (
                     <FormattedMessage id={"home-header.partnership-contact"} />
                 ),
-                path: "/lien-he-hop-tac",
+                path: path.HOMEPAGE,
             },
             {
                 title: <FormattedMessage id={"home-header.contact"} />,
-                path: "/lien-he",
+                path: path.HOMEPAGE,
             },
             {
                 title: <FormattedMessage id={"home-header.faq"} />,
-                path: "/cau-hoi-thuong-gap",
+                path: path.HOMEPAGE,
             },
             {
                 title: <FormattedMessage id={"home-header.terms-of-use"} />,
-                path: "/dieu-khoan-su-dung",
+                path: path.HOMEPAGE,
             },
         ];
         return (

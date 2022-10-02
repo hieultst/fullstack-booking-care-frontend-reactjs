@@ -121,5 +121,21 @@
             "select-specialty": "Chọn chuyên khoa",
             "select-clinic":"Chọn phòng khám"
         }
+    },
+    "footer": {
+        "contact": "Liên hệ hợp tác",
+        "edtp": "Gói chuyển đổi số doanh nghiệp",
+        "recruit": "Tuyển dụng",
+        "faq":"Câu hỏi thường gặp",
+        "terms-of-use": "Điều khoản sử dụng",
+        "policy": "Chính sách bảo mật",
+        "support-process": "Quy trình hỗ trợ giải quyết khiếu nại", 
+        "regulations":"Quy chế hoạt động",
+        "headquarters": "Trụ sở tại Hà Nội",
+        "address-hn": "Cầu Giấy, Hà Nội",
+        "office": "Văn phòng tại TP Hồ Chí Minh",
+        "address-hcm": "Phường 15, Quận 10",
+        "support": "Hỗ trợ khách hàng",
+        "time-email":"support@bookingcare.vn (7h30 - 18h)"
     }
 }

@@ -121,5 +121,21 @@
             "select-specialty": "Select specialty",
             "select-clinic":"Select clinic"
         }
+    },
+    "footer": {
+        "contact": "Partnership contact",
+        "edtp": "Enterprise digital transformation package",
+        "recruit": "Recruit",
+        "faq":"Frequently Asked Questions",
+        "terms-of-use": "Terms Of Use",
+        "policy": "Privacy Policy",
+        "support-process": "Complaint resolution support process", 
+        "regulations":"Operating regulations",
+        "headquarters": "Headquartered in Hanoi",
+        "address-hn": "Cau Giay, Hanoi",
+        "office": "Ho Chi Minh City Office",
+        "address-hcm": "Ward 15, District 10",
+        "support": "Customer Support",
+        "time-email":"support@bookingcare.vn (7:30AM - 6:00PM)"
     }
 }
