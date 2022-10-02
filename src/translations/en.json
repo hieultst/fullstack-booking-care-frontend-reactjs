@@ -9,7 +9,14 @@
         "medical-package": "Checkup package",
         "general-examination": "General health check",
         "support": "Support",
-        "welcome": "Welcome, "
+        "welcome": "Welcome, ",
+        "home": "Home",
+        "manual": "Manual",
+        "partnership-contact": "Partnership Contact",
+        "contact": "Contact",
+        "faq": "Frequently Asked Questions", 
+        "terms-of-use": "Terms of Use",
+        "back": "Back"
     },
     "banner": {
         "medical-background": "MEDICAL BACKGROUND",

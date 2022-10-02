@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { FormattedMessage } from "react-intl";
+import { Link } from "react-router-dom";
 
 import "./HomeHeader.scss";
 import khamChuyenKhoa from "../../assets/icons/khamchuyenkhoa.png";
@@ -10,12 +12,19 @@ import khamTuXa from "../../assets/icons/khamtuxa.png";
 import sucKhoeTinhThan from "../../assets/icons/suckhoetinhthan.png";
 import xetNghiemYHoc from "../../assets/icons/xetnghiemyhoc.png";
 import logo from "../../assets/images/logo.png";
-import { FormattedMessage } from "react-intl";
-import { LANGUAGES } from "../../utils";
+import { LANGUAGES, path } from "../../utils";
 
 import { changeLanguageApp } from "../../store/actions";
+import CustomScrollbars from "../../components/CustomScrollbars";
 
 class HomeHeader extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpentSidebar: false,
+        };
+    }
+
     ChangeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
         // fire redux event: actions
@@ -27,14 +36,105 @@ class HomeHeader extends Component {
         }
     };
 
+    handleShowSidebar = () => {
+        this.setState({
+            isOpentSidebar: !this.state.isOpentSidebar,
+        });
+    };
+
     render() {
-        let language = this.props.language;
+        let { language } = this.props;
+        let { isOpentSidebar } = this.state;
+        let sidebarData = [
+            {
+                title: <FormattedMessage id={"home-header.home"} />,
+                path: path.HOMEPAGE,
+            },
+            {
+                title: <FormattedMessage id={"home-header.manual"} />,
+                path: "/cam-nang",
+            },
+            {
+                title: (
+                    <FormattedMessage id={"home-header.partnership-contact"} />
+                ),
+                path: "/lien-he-hop-tac",
+            },
+            {
+                title: <FormattedMessage id={"home-header.contact"} />,
+                path: "/lien-he",
+            },
+            {
+                title: <FormattedMessage id={"home-header.faq"} />,
+                path: "/cau-hoi-thuong-gap",
+            },
+            {
+                title: <FormattedMessage id={"home-header.terms-of-use"} />,
+                path: "/dieu-khoan-su-dung",
+            },
+        ];
         return (
             <>
+                <div
+                    className={
+                        isOpentSidebar
+                            ? "display-cover active"
+                            : "display-cover"
+                    }
+                    onClick={() => this.handleShowSidebar()}
+                ></div>
                 <div className="home-header-container">
+                    <div
+                        className={
+                            isOpentSidebar
+                                ? "sidebar-container active"
+                                : "sidebar-container"
+                        }
+                    >
+                        <CustomScrollbars
+                            style={{ height: "100%", width: "100%" }}
+                        >
+                            {sidebarData.map((item, index) => {
+                                return (
+                                    <div className="sidebar-item" key={index}>
+                                        <div className="sidebar-title">
+                                            <Link to={item.path}>
+                                                {item.title}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                            <div className="sidebar-footer">
+                                <span className="sidebar-icon sidebar-fb">
+                                    <Link to="/home">
+                                        <i class="fab fa-facebook-square"></i>
+                                    </Link>
+                                </span>
+                                <span className="sidebar-icon sidebar-yt">
+                                    <Link to="/home">
+                                        <i class="fab fa-youtube"></i>
+                                    </Link>
+                                </span>
+                            </div>
+                            <div className="btn-back hide-on-tablet">
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => this.handleShowSidebar()}
+                                >
+                                    <FormattedMessage id="home-header.back" />
+                                </button>
+                            </div>
+                        </CustomScrollbars>
+                    </div>
                     <div className="home-header-content">
                         <div className="left-content">
-                            <i className="fas fa-bars"></i>
+                            <div
+                                className="header-nav-icon"
+                                onClick={() => this.handleShowSidebar()}
+                            >
+                                <i className="fas fa-bars"></i>
+                            </div>
                             <div className="header-logo">
                                 <img
                                     src={logo}

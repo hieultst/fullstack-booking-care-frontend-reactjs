@@ -9,7 +9,14 @@
         "medical-package": "Gói khám",
         "general-examination": "Khám sức khỏe tổng quát",
         "support": "Hỗ trợ",
-        "welcome": "xin chào, "
+        "welcome": "xin chào, ",
+        "home": "Trang chủ",
+        "manual": "Cẩm nang",
+        "partnership-contact": "Liên hệ hợp tác",
+        "contact": "Liên hệ",
+        "faq": "Câu hỏi thường gặp", 
+        "terms-of-use": "Điều khoản sử dụng",
+        "back": "Quay lại"
     },
     "banner": {
         "medical-background": "NỀN TẢNG Y TẾ",

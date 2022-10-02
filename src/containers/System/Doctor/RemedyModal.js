@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import { Modal, ModalBody, ModalFooter, Button } from "reactstrap";
 
 import "./RemedyModal.scss";
 import { CommonUtils } from "../../../utils";
