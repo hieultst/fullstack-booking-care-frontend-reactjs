@@ -73,6 +73,14 @@
         "choose-date": "Choose date",
         "save": "Save infor"
     },
+    "manage-specialty":{
+        "show": "See more",
+        "hide":"Hide"
+    },
+    "system-fqa": {
+        "learn-more": "Need to learn more? ",
+        "fqa":"See frequently asked questions."
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "Schedule",

@@ -12,6 +12,7 @@ import {
 } from "../../../services/userService";
 import _ from "lodash";
 import { LANGUAGES } from "../../../utils";
+import SystemFAQ from "../../../components/SystemFAQ/SystemFAQ";
 import Footer from "../../HomePage/Footer";
 
 class DetailSpecialty extends Component {
@@ -21,6 +22,7 @@ class DetailSpecialty extends Component {
             arrDoctorId: [],
             dataDetailSpecialty: [],
             listProvince: [],
+            isShowViewDetail: false,
         };
     }
 
@@ -114,10 +116,20 @@ class DetailSpecialty extends Component {
         }
     };
 
+    handleShowViewDetail = () => {
+        this.setState({
+            isShowViewDetail: !this.state.isShowViewDetail,
+        });
+    };
+
     render() {
         let { language } = this.props;
-        let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
-
+        let {
+            arrDoctorId,
+            dataDetailSpecialty,
+            listProvince,
+            isShowViewDetail,
+        } = this.state;
         return (
             <div className="detail-specialty-container">
                 <HomeHeader />
@@ -125,11 +137,41 @@ class DetailSpecialty extends Component {
                     <div className="desc-specialty">
                         {dataDetailSpecialty &&
                             !_.isEmpty(dataDetailSpecialty) && (
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: dataDetailSpecialty.descriptionHTML,
-                                    }}
-                                ></div>
+                                <>
+                                    <div className="desc-title">
+                                        <h1>{dataDetailSpecialty.name}</h1>
+                                    </div>
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: dataDetailSpecialty.descriptionHTML,
+                                        }}
+                                        className={
+                                            isShowViewDetail === true
+                                                ? "desc-content"
+                                                : "desc-content desc-hide"
+                                        }
+                                    ></div>
+                                    <div
+                                        className="view-detail"
+                                        onClick={() =>
+                                            this.handleShowViewDetail()
+                                        }
+                                    >
+                                        {isShowViewDetail === true ? (
+                                            <span>
+                                                <FormattedMessage
+                                                    id={"manage-specialty.hide"}
+                                                />
+                                            </span>
+                                        ) : (
+                                            <span>
+                                                <FormattedMessage
+                                                    id={"manage-specialty.show"}
+                                                />
+                                            </span>
+                                        )}
+                                    </div>
+                                </>
                             )}
                     </div>
                     <div className="search-sp-doctor">
@@ -178,6 +220,7 @@ class DetailSpecialty extends Component {
                             );
                         })}
                 </div>
+                <SystemFAQ />
                 <Footer />
             </div>
         );

@@ -272,7 +272,7 @@ class HomeHeader extends Component {
                                         </div>
                                     </div>
                                     <div className="option-text">
-                                        <FormattedMessage id="banner.remote-examination" />
+                                        <FormattedMessage id="banner.general-examination" />
                                     </div>
                                 </div>
                                 <div className="option-child">

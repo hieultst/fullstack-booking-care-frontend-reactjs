@@ -73,6 +73,14 @@
         "choose-date": "Chọn ngày",
         "save": "Lưu thông tin"
     },
+    "manage-specialty":{
+        "show": "Xem thêm",
+        "hide":"Ẩn bớt"
+    },
+    "system-fqa": {
+        "learn-more": "Cần tìm hiểu thêm? ",
+        "fqa":"Xem câu hỏi thường gặp."
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "Lịch khám",
