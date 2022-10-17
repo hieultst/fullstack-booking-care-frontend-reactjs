@@ -108,12 +108,12 @@ class HomeHeader extends Component {
                             <div className="sidebar-footer">
                                 <span className="sidebar-icon sidebar-fb">
                                     <Link to="/home">
-                                        <i class="fab fa-facebook-square"></i>
+                                        <i className="fab fa-facebook-square"></i>
                                     </Link>
                                 </span>
                                 <span className="sidebar-icon sidebar-yt">
                                     <Link to="/home">
-                                        <i class="fab fa-youtube"></i>
+                                        <i className="fab fa-youtube"></i>
                                     </Link>
                                 </span>
                             </div>

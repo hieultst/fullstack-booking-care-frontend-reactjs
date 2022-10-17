@@ -109,12 +109,12 @@ class Footer extends Component {
                             <div className="col-6 col-md-6 footer-right">
                                 <span className="icon fb">
                                     <Link to="/home">
-                                        <i class="fab fa-facebook-square"></i>
+                                        <i className="fab fa-facebook-square"></i>
                                     </Link>
                                 </span>
                                 <span className="icon yt">
                                     <Link to="/home">
-                                        <i class="fab fa-youtube"></i>
+                                        <i className="fab fa-youtube"></i>
                                     </Link>
                                 </span>
                             </div>

@@ -6,6 +6,7 @@ import { withRouter } from "react-router";
 
 import "./Specialty.scss";
 import { getAllSpecialty } from "../../../services/userService";
+import { LANGUAGES } from "../../../utils";
 
 class Specialty extends Component {
     constructor(props) {
@@ -16,7 +17,6 @@ class Specialty extends Component {
     }
     async componentDidMount() {
         let res = await getAllSpecialty();
-        console.log("Check res: ", res);
 
         if (res && res.errCode === 0) {
             this.setState({
@@ -33,6 +33,7 @@ class Specialty extends Component {
 
     render() {
         let { dataSpecialty } = this.state;
+        let { language } = this.props;
         return (
             <div className="section specialty">
                 <div className="section-container">
@@ -69,7 +70,11 @@ class Specialty extends Component {
                                                     backgroundImage: `url(${item.image})`,
                                                 }}
                                             ></div>
-                                            <h3>{item.name}</h3>
+                                            <h3>
+                                                {language === LANGUAGES.VI
+                                                    ? item.nameVi
+                                                    : item.nameEn}
+                                            </h3>
                                         </div>
                                     );
                                 })}

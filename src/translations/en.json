@@ -128,6 +128,16 @@
             "note": "Note",
             "select-specialty": "Select specialty",
             "select-clinic":"Select clinic"
+        },
+        "manage-specialty": {
+            "specialty-management": "Specialty Management",
+            "name-vi":"Vietnamese specialist name",
+            "name-en":"English specialist name",
+            "desc":"Specialized information",
+            "specialty-photo":"Specialty photo",
+            "save":"Save", 
+            "edit": "Save changes",
+            "upload-img": "Upload image "
         }
     },
     "footer": {

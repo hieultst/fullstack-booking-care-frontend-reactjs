@@ -139,7 +139,11 @@ class DetailSpecialty extends Component {
                             !_.isEmpty(dataDetailSpecialty) && (
                                 <>
                                     <div className="desc-title">
-                                        <h1>{dataDetailSpecialty.name}</h1>
+                                        <h1>
+                                            {language === LANGUAGES.VI
+                                                ? dataDetailSpecialty.nameVi
+                                                : dataDetailSpecialty.nameEn}
+                                        </h1>
                                     </div>
                                     <div
                                         dangerouslySetInnerHTML={{

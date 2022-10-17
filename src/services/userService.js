@@ -75,11 +75,26 @@ const postVerifyBookAppointment = (data) => {
     return axios.post("/api/verify-book-appointment", data);
 };
 
-const createNewSpecialty = (data) => {
+// Specialty
+// const createNewSpecialty = (data) => {
+//     return axios.post("/api/create-new-specialty", data);
+// };
+
+const createNewSpecialtyServer = (data) => {
     return axios.post("/api/create-new-specialty", data);
 };
 
-const getAllSpecialty = () => {
+const deleteSpecialtyService = (id) => {
+    return axios.delete("/api/delete-specialty", {
+        data: { id: id },
+    });
+};
+
+// const getAllSpecialty = () => {
+//     return axios.get("/api/get-all-specialty");
+// };
+
+const getAllSpecialtyServer = () => {
     return axios.get("/api/get-all-specialty");
 };
 
@@ -89,6 +104,11 @@ const getDetailSpecialtyById = (data) => {
     );
 };
 
+const editSpecialtyService = (inputData) => {
+    return axios.put("/api/edit-specialty", inputData);
+};
+
+// Clinic
 const createNewClinic = (data) => {
     return axios.post("/api/create-new-clinic", data);
 };
@@ -129,6 +149,11 @@ export {
     getProfileDoctorById,
     postPatientBookingAppointment,
     postVerifyBookAppointment,
+    // Specialty
+    createNewSpecialtyServer,
+    deleteSpecialtyService,
+    editSpecialtyService,
+    getAllSpecialtyServer,
     createNewSpecialty,
     getAllSpecialty,
     getDetailSpecialtyById,

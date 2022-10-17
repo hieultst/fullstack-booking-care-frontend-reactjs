@@ -33,7 +33,9 @@ class SystemFAQ extends Component {
     }
 }
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => {
+    return {};
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {};

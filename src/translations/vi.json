@@ -128,6 +128,16 @@
             "note": "Ghi chú",
             "select-specialty": "Chọn chuyên khoa",
             "select-clinic":"Chọn phòng khám"
+        },
+        "manage-specialty": {
+            "specialty-management": "Quản lý chuyên khoa",
+            "name-vi":"Tên chuyên khoa tiếng việt",
+            "name-en":"Tên chuyên khoa tiếng anh",
+            "desc":"Thông tin chuyên khoa",
+            "specialty-photo":"Ảnh chuyên khoa",
+            "save":"Lưu",
+            "edit": "Lưu thay đổi",
+            "upload-img": "Tải ảnh "
         }
     },
     "footer": {

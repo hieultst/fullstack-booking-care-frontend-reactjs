@@ -12,8 +12,12 @@ import {
     getDetailInforDoctorService,
     // getMarkdownService,
     // saveBulkScheduleDoctorService,
+    createNewSpecialtyServer,
+    getAllSpecialtyServer,
+    deleteSpecialtyService,
     getAllSpecialty,
     getAllClinic,
+    editSpecialtyService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -383,7 +387,7 @@ export const getRequiredDoctorInfor = () => {
             let resPrice = await getAllCodeService("PRICE");
             let resPayment = await getAllCodeService("PAYMENT");
             let resProvince = await getAllCodeService("PROVINCE");
-            let resSpecialty = await getAllSpecialty();
+            let resSpecialty = await getAllSpecialtyServer();
             let resClinic = await getAllClinic();
             if (
                 resPrice &&
@@ -422,4 +426,103 @@ export const fetchRequiredDoctorInforSuccess = (allRequiredData) => ({
 
 export const fetchRequiredDoctorInforFailed = () => ({
     type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED,
+});
+
+// Specialty
+export const createNewSpecialty = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await createNewSpecialtyServer(data);
+            if (res && res.errCode === 0) {
+                toast.success("Create a new specialty success!");
+                dispatch({ type: actionTypes.CREATE_SPECIALTY_SUCCESS });
+                dispatch(fetchAllSpecialty());
+            } else {
+                toast.warn(res.errMessage);
+                dispatch({ type: actionTypes.CREATE_SPECIALTY_FAILED });
+            }
+        } catch (error) {
+            dispatch({ type: actionTypes.CREATE_SPECIALTY_FAILED });
+        }
+    };
+};
+
+export const fetchAllSpecialty = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllSpecialtyServer();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllSpecialtySuccess(res.data.reverse()));
+            } else {
+                toast.error("Fetch all specialty error!");
+                dispatch(fetchAllSpecialtyFailed());
+            }
+        } catch (error) {
+            toast.error("Fetch all specialty error!");
+            dispatch(fetchAllSpecialtyFailed());
+        }
+    };
+};
+
+export const fetchAllSpecialtySuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_SPECIALTY_SUCCESS,
+    data: data,
+});
+
+export const fetchAllSpecialtyFailed = () => ({
+    type: actionTypes.FETCH_ALL_SPECIALTY_FAILED,
+});
+
+export const deleteASpecialty = (specialtyId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteSpecialtyService(specialtyId);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the specialty success!");
+                dispatch(deleteSpecialtySuccess());
+                dispatch(fetchAllSpecialty());
+            } else {
+                toast.error("Delete the specialty error!");
+                dispatch(deleteSpecialtyFailed());
+            }
+        } catch (error) {
+            toast.error("Delete the specialty error!");
+            dispatch(deleteSpecialtyFailed());
+        }
+    };
+};
+
+export const deleteSpecialtySuccess = () => ({
+    type: actionTypes.DELETE_SPECIALTY_SUCCESS,
+});
+
+export const deleteSpecialtyFailed = () => ({
+    type: actionTypes.DELETE_SPECIALTY_FAILED,
+});
+
+export const editASpecialty = (specialty) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editSpecialtyService(specialty);
+            if (res && res.errCode === 0) {
+                toast.success("Update specialty success!");
+                dispatch(editSpecialtySuccess());
+                dispatch(fetchAllSpecialty());
+            } else {
+                toast.error("Update specialty error!");
+                dispatch(editSpecialtyFailed());
+            }
+        } catch (error) {
+            toast.error("Update specialty error!");
+            dispatch(editSpecialtyFailed());
+        }
+    };
+};
+
+export const editSpecialtySuccess = () => ({
+    type: actionTypes.EDIT_SPECIALTY_SUCCESS,
+});
+
+export const editSpecialtyFailed = () => ({
+    type: actionTypes.EDIT_SPECIALTY_FAILED,
 });
