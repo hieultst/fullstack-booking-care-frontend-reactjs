@@ -12,12 +12,19 @@ import {
     getDetailInforDoctorService,
     // getMarkdownService,
     // saveBulkScheduleDoctorService,
-    createNewSpecialtyServer,
-    getAllSpecialtyServer,
-    deleteSpecialtyService,
-    getAllSpecialty,
-    getAllClinic,
+    createNewSpecialtyService,
+    getAllSpecialtyService,
     editSpecialtyService,
+    getSpecialtyByIdService,
+    deleteSpecialtyService,
+    // getAllSpecialty,
+    createNewClinicService,
+    getAllClinic,
+    editClinicService,
+    deleteClinicService,
+    getAllClinicService,
+    getDetailClinicById,
+    getAllCodeTypeService,
 } from "../../services/userService";
 
 export const fetchGenderStart = () => {
@@ -328,6 +335,32 @@ export const fetchDetailInforDoctorFailed = () => ({
 //     type: actionTypes.FETCH_MARKDOWN_FAILED,
 // });
 
+// All code
+export const fetchAllcodeType = (type) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeTypeService(type);
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllcodeTypeSuccess(res.data));
+            } else {
+                dispatch(fetchAllcodeTypeFailed());
+            }
+        } catch (error) {
+            console.log("Erorr fetch all code schedule time failed: ", error);
+            dispatch(fetchAllcodeTypeFailed());
+        }
+    };
+};
+
+export const fetchAllcodeTypeSuccess = (data) => ({
+    type: actionTypes.FETCH_ALLCODE_TYPE_SUCCESS,
+    data: data,
+});
+
+export const fetchAllcodeTypeFailed = () => ({
+    type: actionTypes.FETCH_ALLCODE_TYPE_FAILED,
+});
+
 export const fetchAllcodeScheduleTime = () => {
     return async (dispatch, getState) => {
         try {
@@ -387,7 +420,7 @@ export const getRequiredDoctorInfor = () => {
             let resPrice = await getAllCodeService("PRICE");
             let resPayment = await getAllCodeService("PAYMENT");
             let resProvince = await getAllCodeService("PROVINCE");
-            let resSpecialty = await getAllSpecialtyServer();
+            let resSpecialty = await getAllSpecialtyService();
             let resClinic = await getAllClinic();
             if (
                 resPrice &&
@@ -432,7 +465,7 @@ export const fetchRequiredDoctorInforFailed = () => ({
 export const createNewSpecialty = (data) => {
     return async (dispatch, getState) => {
         try {
-            let res = await createNewSpecialtyServer(data);
+            let res = await createNewSpecialtyService(data);
             if (res && res.errCode === 0) {
                 toast.success("Create a new specialty success!");
                 dispatch({ type: actionTypes.CREATE_SPECIALTY_SUCCESS });
@@ -450,7 +483,7 @@ export const createNewSpecialty = (data) => {
 export const fetchAllSpecialty = () => {
     return async (dispatch, getState) => {
         try {
-            let res = await getAllSpecialtyServer();
+            let res = await getAllSpecialtyService();
             if (res && res.errCode === 0) {
                 dispatch(fetchAllSpecialtySuccess(res.data.reverse()));
             } else {
@@ -471,6 +504,32 @@ export const fetchAllSpecialtySuccess = (data) => ({
 
 export const fetchAllSpecialtyFailed = () => ({
     type: actionTypes.FETCH_ALL_SPECIALTY_FAILED,
+});
+
+export const fetchSpecialtyById = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getSpecialtyByIdService(data);
+            if (res && res.errCode === 0) {
+                dispatch(fetchSpecialtyByIdSuccess(res.data));
+            } else {
+                toast.error("Fetch specialty by id error!");
+                dispatch(fetchSpecialtyByIdFailed());
+            }
+        } catch (error) {
+            toast.error("Fetch specialty by id error!");
+            dispatch(fetchSpecialtyByIdFailed());
+        }
+    };
+};
+
+export const fetchSpecialtyByIdSuccess = (data) => ({
+    type: actionTypes.FETCH_SPECIALTY_BY_ID_SUCCESS,
+    data: data,
+});
+
+export const fetchSpecialtyByIdFailed = () => ({
+    type: actionTypes.FETCH_SPECIALTY_BY_ID_FAILED,
 });
 
 export const deleteASpecialty = (specialtyId) => {
@@ -525,4 +584,126 @@ export const editSpecialtySuccess = () => ({
 
 export const editSpecialtyFailed = () => ({
     type: actionTypes.EDIT_SPECIALTY_FAILED,
+});
+
+// Clinic
+export const createNewClinic = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await createNewClinicService(data);
+            console.log("Check res from action: ", res);
+            if (res && res.errCode === 0) {
+                toast.success("Create a new clinic success!");
+                dispatch({ type: actionTypes.CREATE_CLINIC_SUCCESS });
+                dispatch(fetchAllClinic());
+            } else {
+                toast.warn(res.errMessage);
+                dispatch({ type: actionTypes.CREATE_CLINIC_FAILED });
+            }
+        } catch (error) {
+            dispatch({ type: actionTypes.CREATE_CLINIC_FAILED });
+        }
+    };
+};
+
+export const fetchAllClinic = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllClinicService();
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllClinicSuccess(res.data.reverse()));
+            } else {
+                toast.error("Fetch all clinic error!");
+                dispatch(fetchAllClinicFailed());
+            }
+        } catch (error) {
+            toast.error("Fetch all clinic error!");
+            dispatch(fetchAllClinicFailed());
+        }
+    };
+};
+
+export const fetchAllClinicSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_CLINIC_SUCCESS,
+    data: data,
+});
+
+export const fetchAllClinicFailed = () => ({
+    type: actionTypes.FETCH_ALL_CLINIC_FAILED,
+});
+
+export const fetchClinicById = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getDetailClinicById(data);
+            if (res && res.errCode === 0) {
+                dispatch(fetchClinicByIdSuccess(res.data));
+            } else {
+                toast.error("Fetch clinic error!");
+                dispatch(fetchClinicByIdFailed());
+            }
+        } catch (error) {
+            toast.error("Fetch clinic error!");
+            dispatch(fetchClinicByIdFailed());
+        }
+    };
+};
+
+export const fetchClinicByIdSuccess = (data) => ({
+    type: actionTypes.FETCH_CLINIC_BY_ID_SUCCESS,
+    data: data,
+});
+
+export const fetchClinicByIdFailed = () => ({
+    type: actionTypes.FETCH_CLINIC_BY_ID_FAILED,
+});
+
+export const editAClinic = (clinic) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editClinicService(clinic);
+            if (res && res.errCode === 0) {
+                toast.success("Update clinic success!");
+                dispatch({
+                    type: actionTypes.EDIT_CLINIC_SUCCESS,
+                });
+                dispatch(fetchAllClinic());
+            } else {
+                toast.error("Update clinic error!");
+                dispatch(editClinicFailed());
+            }
+        } catch (error) {
+            toast.error("Update clinic error!");
+            dispatch(editClinicFailed());
+        }
+    };
+};
+
+export const editClinicFailed = () => ({
+    type: actionTypes.EDIT_CLINIC_FAILED,
+});
+
+export const deleteAClinic = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteClinicService(id);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the clinic success!");
+                dispatch({
+                    type: actionTypes.DELETE_SPECIALTY_SUCCESS,
+                });
+                dispatch(fetchAllClinic());
+            } else {
+                toast.error("Delete the clinic error!");
+                dispatch(deleteClinicFailed());
+            }
+        } catch (error) {
+            toast.error("Delete the clinic error!");
+            dispatch(deleteClinicFailed());
+        }
+    };
+};
+
+export const deleteClinicFailed = () => ({
+    type: actionTypes.DELETE_SPECIALTY_FAILED,
 });

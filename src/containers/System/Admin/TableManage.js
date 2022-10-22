@@ -14,7 +14,7 @@ class TableManage extends Component {
 
     async componentDidMount() {}
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps) {
         if (prevProps.data !== this.props.data) {
             this.setState({
                 data: this.props.data,
@@ -31,7 +31,7 @@ class TableManage extends Component {
     };
 
     render() {
-        let { titleVi, titleEn, language, data } = this.props;
+        let { language, data, title, id } = this.props;
 
         return (
             <>
@@ -39,15 +39,64 @@ class TableManage extends Component {
                     <tbody>
                         <tr>
                             {language === LANGUAGES.VI
-                                ? titleVi.map((item, index) => {
+                                ? title.valueVi.map((item, index) => {
                                       return <th key={index}>{item}</th>;
                                   })
-                                : titleEn.map((item, index) => {
+                                : title.valueEn.map((item, index) => {
                                       return <th key={index}>{item}</th>;
                                   })}
                         </tr>
                         {data &&
                             data.length > 0 &&
+                            id === "specialty" &&
+                            data.map((item, index) => {
+                                return (
+                                    <tr
+                                        key={index}
+                                        onClick={() => {
+                                            this.handleEditFromParent(item);
+                                        }}
+                                    >
+                                        <td className="stt">{index + 1}</td>
+                                        <td>{item.nameVi}</td>
+                                        <td>{item.nameEn}</td>
+                                        <td>
+                                            <p className="descSpecialty">
+                                                {item.descriptionMarkdown}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <img
+                                                className="image"
+                                                src={item.image}
+                                            ></img>
+                                        </td>
+                                        <td className="action">
+                                            <button
+                                                className="btn btn-edit"
+                                                onClick={() => {
+                                                    this.handleEditFromParent(
+                                                        item
+                                                    );
+                                                }}
+                                            >
+                                                <i className="fas fa-pencil-alt"></i>
+                                            </button>
+                                            <button
+                                                className="btn btn-delete"
+                                                onClick={() => {
+                                                    this.handleDelete(item);
+                                                }}
+                                            >
+                                                <i className="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        {data &&
+                            data.length > 0 &&
+                            id === "clinic" &&
                             data.map((item, index) => {
                                 return (
                                     <tr
@@ -57,9 +106,28 @@ class TableManage extends Component {
                                         }}
                                     >
                                         <td>{index + 1}</td>
-                                        <td>{item.nameVi}</td>
-                                        <td>{item.nameEn}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.address}</td>
                                         <td>
+                                            <p className="descClinic">
+                                                {
+                                                    item.descriptionMarkdownIntroduce
+                                                }
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <img
+                                                className="image"
+                                                src={item.image}
+                                            ></img>
+                                        </td>
+                                        <td>
+                                            <img
+                                                className="logo"
+                                                src={item.logo}
+                                            ></img>
+                                        </td>
+                                        <td className="action">
                                             <button
                                                 className="btn btn-edit"
                                                 onClick={() => {

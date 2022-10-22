@@ -36,11 +36,14 @@ class ProfileDoctor extends Component {
         return result;
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps) {
         if (this.props.language !== prevProps.language) {
         }
         if (this.props.doctorId !== prevProps.doctorId) {
-            // this.getInforDoctor(this.props.doctorId);
+            let data = await this.getInforDoctor(this.props.doctorId);
+            this.setState({
+                dataProfile: data,
+            });
         }
     }
 

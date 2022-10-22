@@ -87,7 +87,10 @@ class ManageDoctor extends Component {
             if (type === "SPECIALTY") {
                 data.map((item, index) => {
                     let object = {};
-                    object.label = item.name;
+                    let labelVi = item.nameVi;
+                    let labelEn = item.nameEn;
+                    object.label =
+                        language === LANGUAGES.VI ? labelVi : labelEn;
                     object.value = item.id;
                     result.push(object);
                 });
@@ -120,7 +123,7 @@ class ManageDoctor extends Component {
             });
         }
         if (prevProps.language !== this.props.language) {
-            let { resPrice, resPayment, resProvince } =
+            let { resPrice, resPayment, resProvince, resSpecialty } =
                 this.props.allRequiredDoctorInfor;
             let dataSelect = this.builDataInputSelect(
                 this.props.listDoctor,
@@ -135,11 +138,16 @@ class ManageDoctor extends Component {
                 resProvince,
                 "PROVINCE"
             );
+            let dataSelectSpecialty = this.builDataInputSelect(
+                resSpecialty,
+                "SPECIALTY"
+            );
             this.setState({
                 listDoctor: dataSelect,
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
                 listProvince: dataSelectProvince,
+                listSpecialty: dataSelectSpecialty,
             });
         }
         if (
@@ -197,7 +205,7 @@ class ManageDoctor extends Component {
             selectedPrice: this.state.selectedPrice.value,
             selectedPayment: this.state.selectedPayment.value,
             selectedProvince: this.state.selectedProvince.value,
-            selectedSpecialty: this.state.selectedSpecialty.value,
+            specialtyId: this.state.selectedSpecialty.value,
             clinicId: this.state.selectedClinic.value,
             nameClinic: this.state.nameClinic,
             addressClinic: this.state.addressClinic,
@@ -250,9 +258,6 @@ class ManageDoctor extends Component {
                 });
                 selectedProvince = listProvince.find((item) => {
                     return item && item.value === provinceId;
-                });
-                selectedSpecialty = listSpecialty.find((item) => {
-                    return item && item.value === specialtyId;
                 });
                 selectedSpecialty = listSpecialty.find((item) => {
                     return item && item.value === specialtyId;
@@ -311,7 +316,8 @@ class ManageDoctor extends Component {
     };
 
     render() {
-        let { hasOldData, listSpecialty } = this.state;
+        let { hasOldData } = this.state;
+
         return (
             <div className="manage-doctor-container">
                 <div className="title">
@@ -495,7 +501,7 @@ class ManageDoctor extends Component {
                 <div className="my-5 mx-5">
                     <button
                         className={
-                            hasOldData === true
+                            hasOldData === false
                                 ? "btn btn-primary"
                                 : "btn btn-warning"
                         }

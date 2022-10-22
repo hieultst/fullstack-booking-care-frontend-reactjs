@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import "./SystemFAQ.scss";
 import { Link } from "react-router-dom";
+import { path } from "../../utils";
 
 class SystemFAQ extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class SystemFAQ extends Component {
                     <span>
                         <FormattedMessage id={"system-fqa.learn-more"} />
                     </span>
-                    <Link to="/home">
+                    <Link to={path.HOMEPAGE}>
                         <p>
                             <FormattedMessage id={"system-fqa.fqa"} />
                         </p>

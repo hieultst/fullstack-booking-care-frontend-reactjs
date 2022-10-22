@@ -14,6 +14,11 @@ const initialState = {
 
     allRequiredDoctorInfor: [],
     specialties: [],
+    specialtiesById: [],
+    clinicsById: [],
+    clinics: [],
+    clinic: {},
+    allCodeType: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -110,6 +115,16 @@ const adminReducer = (state = initialState, action) => {
         //     return {
         //         ...copyState,
         //     };
+        case actionTypes.FETCH_ALLCODE_TYPE_SUCCESS:
+            copyState.allCodeType = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ALLCODE_TYPE_FAILED:
+            copyState.allCodeType = [];
+            return {
+                ...copyState,
+            };
         case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
             copyState.allScheduleTime = action.data;
             return {
@@ -137,6 +152,46 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_ALL_SPECIALTY_FAILED:
             copyState.specialties = [];
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_SPECIALTY_BY_ID_SUCCESS:
+            copyState.specialtiesById = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_SPECIALTY_BY_ID_FAILED:
+            copyState.specialtiesById = [];
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_CLINIC_BY_ID_SUCCESS:
+            copyState.clinicsById = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_CLINIC_BY_ID_FAILED:
+            copyState.clinicsById = [];
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ALL_CLINIC_SUCCESS:
+            copyState.clinics = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_ALL_CLINIC_FAILED:
+            copyState.clinics = [];
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_CLINIC_BY_ID_SUCCESS:
+            copyState.clinic = action.data;
+            return {
+                ...copyState,
+            };
+        case actionTypes.FETCH_CLINIC_BY_ID_FAILED:
+            copyState.clinic = {};
             return {
                 ...copyState,
             };

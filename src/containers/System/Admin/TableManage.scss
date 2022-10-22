@@ -37,13 +37,10 @@
     border: none;
     outline: none;
     background: transparent;
+    padding: 26px 0;
 
     &:hover {
       background: transparent;
-    }
-
-    &+.btn {
-      margin-left: 20px;
     }
 
     &:focus {
@@ -57,5 +54,70 @@
     &:hover {
       color: rgba(255, 63, 99, 0.71);
     }
+  }
+
+  .image {
+    width: 200px;
+    margin: auto;
+    display: block;
+  }
+
+  .logo {
+    width: 100px;
+    margin: auto;
+    display: block;
+  }
+
+  .stt {
+    text-align: center;
+  }
+
+  .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  p {
+    margin: 0;
+
+    &.descClinic,
+    &.descSpecialty {
+      width: 400px;
+      height: 140px;
+      overflow-y: auto;
+      text-align: justify;
+      padding-right: 8px;
+    }
+
+    &.descSpecialty {
+      margin-right: -25px;
+    }
+
+    &.descClinic {
+      margin-right: 0;
+    }
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 }

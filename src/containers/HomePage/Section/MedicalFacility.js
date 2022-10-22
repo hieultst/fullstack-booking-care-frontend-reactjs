@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 import { withRouter } from "react-router";
+import { FormattedMessage } from "react-intl";
 
 import "./MedicalFacility.scss";
+import * as actions from "../../../store/actions";
 import { getAllClinic } from "../../../services/userService";
 
 class MedicalFacility extends Component {
@@ -35,9 +37,15 @@ class MedicalFacility extends Component {
             <div className="section medical-facility">
                 <div className="section-container">
                     <div className="section-header">
-                        <h2>Cơ sở y tế nổi bật</h2>
+                        <h2>
+                            <FormattedMessage
+                                id={"home-page.outstanding-clinic"}
+                            />
+                        </h2>
                         <div className="section-more">
-                            <a>Xem thêm</a>
+                            <a>
+                                <FormattedMessage id={"home-page.more-info"} />
+                            </a>
                         </div>
                     </div>
                     <div className="section-body">
@@ -74,13 +82,13 @@ class MedicalFacility extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.user.isLoggedIn,
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        fetchAllSpecialty: () => dispatch(actions.fetchAllSpecialty()),
+    };
 };
 
 export default withRouter(

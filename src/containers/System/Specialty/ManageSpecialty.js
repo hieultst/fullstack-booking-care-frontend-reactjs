@@ -9,6 +9,11 @@ import "./ManageSpecialty.scss";
 import { CommonUtils, CRUD_ACTIONS, LANGUAGES } from "../../../utils";
 import * as actions from "../../../store/actions";
 import TableManage from "../Admin/TableManage";
+import {
+    errorData,
+    specialtyTitleData,
+    titleSpecialty,
+} from "../../System/DataValid";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -25,7 +30,6 @@ class ManageSpecialty extends Component {
             isOpen: false,
 
             previewImgUrl: "",
-            backgroundImg: "",
             action: CRUD_ACTIONS.CREATE,
         };
     }
@@ -121,35 +125,14 @@ class ManageSpecialty extends Component {
     checkValidateInput = () => {
         let { language } = this.props;
         let isValid = true;
-        let arrCheck = [
-            {
-                key: "nameVi",
-                valueVi: "Tên chuyên khoa tiếng việt",
-                valueEn: "Vietnamese specialist name",
-            },
-            {
-                key: "nameEn",
-                valueVi: "Tên chuyên khoa tiếng anh",
-                valueEn: "English specialist name",
-            },
-            {
-                key: "previewImgUrl",
-                valueVi: "Hình ảnh chuyên khoa",
-                valueEn: "Professional images",
-            },
-            {
-                key: "descriptionMarkdown",
-                valueVi: "Thông tin chuyên khoa",
-                valueEn: "Specialized information",
-            },
-        ];
+        let arrCheck = specialtyTitleData.data;
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i].key]) {
                 isValid = false;
                 if (language === LANGUAGES.VI) {
-                    alert("This input is required: " + arrCheck[i].valueVi);
+                    alert(errorData.valueVi + arrCheck[i].valueVi);
                 } else {
-                    alert("This input is required: " + arrCheck[i].valueEn);
+                    alert(errorData.valueEn + arrCheck[i].valueEn);
                 }
                 break;
             }
@@ -177,9 +160,6 @@ class ManageSpecialty extends Component {
         let { nameVi, nameEn, descriptionMarkdown, previewImgUrl } = this.state;
 
         let { specialties } = this.props;
-
-        const titleVi = ["STT", "Tên tiếng việt", "Tên tiếng anh", "Thao tác"];
-        const titleEn = ["STT", "Vietnamese name", "English name", "Actions"];
 
         return (
             <div className="manage-specialty-container">
@@ -281,11 +261,11 @@ class ManageSpecialty extends Component {
                     </div>
                     <div className="col-12 my-3">
                         <TableManage
-                            titleVi={titleVi}
-                            titleEn={titleEn}
+                            title={titleSpecialty}
                             handleEditFromParent={this.handleEditFromParent}
                             action={this.state.action}
                             data={specialties}
+                            id="specialty"
                             handleDelete={this.handleDelete}
                         />
                     </div>

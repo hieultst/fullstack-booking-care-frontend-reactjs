@@ -2,38 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
-import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 
 import "./Specialty.scss";
-import { getAllSpecialty } from "../../../services/userService";
-import { LANGUAGES } from "../../../utils";
+import * as actions from "../../../store/actions";
+import { LANGUAGES, path } from "../../../utils";
 
 class Specialty extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataSpecialty: [],
-        };
-    }
     async componentDidMount() {
-        let res = await getAllSpecialty();
-
-        if (res && res.errCode === 0) {
-            this.setState({
-                dataSpecialty: res.data ? res.data : [],
-            });
-        }
+        this.props.fetchAllSpecialty();
     }
-
-    handleViewDetailSpecialty = (item) => {
-        if (this.props.history) {
-            this.props.history.push(`/detail-specialty/${item.id}`);
-        }
-    };
 
     render() {
-        let { dataSpecialty } = this.state;
-        let { language } = this.props;
+        let { language, specialties } = this.props;
         return (
             <div className="section specialty">
                 <div className="section-container">
@@ -51,30 +32,32 @@ class Specialty extends Component {
                     </div>
                     <div className="section-body">
                         <Slider {...this.props.settings}>
-                            {dataSpecialty &&
-                                dataSpecialty.length > 0 &&
-                                dataSpecialty.map((item, index) => {
+                            {specialties &&
+                                specialties.length > 0 &&
+                                specialties.map((item, index) => {
                                     return (
                                         <div
                                             className="section-item"
                                             key={index}
-                                            onClick={() =>
-                                                this.handleViewDetailSpecialty(
-                                                    item
-                                                )
-                                            }
                                         >
-                                            <div
-                                                className="section-img specialty-img"
-                                                style={{
-                                                    backgroundImage: `url(${item.image})`,
-                                                }}
-                                            ></div>
-                                            <h3>
-                                                {language === LANGUAGES.VI
-                                                    ? item.nameVi
-                                                    : item.nameEn}
-                                            </h3>
+                                            <Link
+                                                to={
+                                                    path.DETAIL_SPECIALTIES +
+                                                    item.id
+                                                }
+                                            >
+                                                <div
+                                                    className="section-img specialty-img"
+                                                    style={{
+                                                        backgroundImage: `url(${item.image})`,
+                                                    }}
+                                                ></div>
+                                                <h3>
+                                                    {language === LANGUAGES.VI
+                                                        ? item.nameVi
+                                                        : item.nameEn}
+                                                </h3>
+                                            </Link>
                                         </div>
                                     );
                                 })}
@@ -88,15 +71,15 @@ class Specialty extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        specialties: state.admin.specialties,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        fetchAllSpecialty: () => dispatch(actions.fetchAllSpecialty()),
+    };
 };
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(Specialty)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Specialty);

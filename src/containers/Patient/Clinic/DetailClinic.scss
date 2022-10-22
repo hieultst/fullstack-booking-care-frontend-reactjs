@@ -1,9 +1,91 @@
 .detail-clinic-container {
-    background-color: #eee;
-
     .detail-clinic-content {
-        width: 1170px;
-        margin: auto;
+        .desc-doctor-list {
+            padding: 10px 198px;
+        }
+
+        .detail-clinic-header {
+            .image {
+                padding: 0 198px;
+
+                div {
+                    height: 230px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                }
+            }
+
+            .navigation {
+                display: flex;
+                align-items: center;
+                position: relative;
+                padding: 10px 198px;
+
+
+                .clinic-logo {
+                    padding: 0 15px;
+
+                    .logo {
+                        height: 60px;
+                        width: 120px;
+                        display: block;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                        margin: auto;
+                        border: 1px solid #f5f5f5;
+                    }
+                }
+
+                .navigation-content {
+                    .clinic-name {
+                        h1 {
+                            line-height: 1.3em;
+                            font-size: 20px;
+                            font-weight: 500;
+                            margin: 0;
+                        }
+                    }
+
+                    .clinic-address {
+                        i {
+                            padding-right: 10px;
+                        }
+
+                        color: #333;
+                        padding: 10px 0;
+                    }
+                }
+            }
+
+            .nav-menu {
+                box-shadow: 1px 2px 3px #bbb;
+                border-top: 1px solid #eee;
+
+                ul {
+                    list-style: none;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    padding: 0 198px;
+
+                    li {
+                        a {
+                            padding: 10px 12px;
+                            color: #666;
+                            display: inline-block;
+                            text-transform: uppercase;
+
+                            &:hover {
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
 
         .search-sp-doctor {
             .select-location {
@@ -17,7 +99,54 @@
             }
         }
 
-        .desc-clinic {}
+        .desc-clinic {
+            padding: 0 198px 30px;
+
+            .desc-content {
+                scroll-margin-top: 75px;
+            }
+
+            .desc-title {
+                font-weight: bold;
+                color: #337ab7;
+                border-bottom: 1px solid #eee;
+                margin: 0;
+                font-size: 16px;
+                padding: 10px 0;
+            }
+
+            .desc {
+                padding: 10px 0;
+                text-align: justify;
+
+                ol,
+                p,
+                ul {
+                    padding: 0;
+                }
+
+                p {
+                    margin: 5px 0;
+
+                    em {
+                        width: 100%;
+                        display: block;
+                        text-align: center;
+
+                        img {
+                            width: 622px;
+                            height: 350px;
+                            margin: auto;
+                        }
+                    }
+                }
+
+                ol,
+                ul {
+                    margin: 10px 0 10px 25px;
+                }
+            }
+        }
 
         .each-doctor {
             padding: 15px;
