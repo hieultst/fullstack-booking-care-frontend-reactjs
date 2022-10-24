@@ -34,14 +34,15 @@
     }
 
     .schedule-doctor {
-        padding: 0 197.1px;
-        margin-bottom: 25px;
+        padding: 0 197.1px 25px;
         min-height: 200px;
+        border-bottom: 1px solid #ccc;
     }
 
     .detail-infor-doctor {
-        padding: 15px 197.1px;
+        padding: 19px 197.1px 15px;
         background-color: #f9f9f9;
+        border-bottom: 1px solid #ccc;
 
         h2,
         h3 {

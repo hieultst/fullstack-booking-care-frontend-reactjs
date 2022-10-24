@@ -44,7 +44,7 @@ class ManageSchedule extends Component {
         this.props.fetchAllcodeScheduleTime();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps) {
         if (prevProps.allDoctors !== this.props.allDoctors) {
             let dataSelect = this.builDataInputSelect(this.props.allDoctors);
             this.setState({
@@ -132,11 +132,6 @@ class ManageSchedule extends Component {
             toast.error("Error saveBulkScheduleDoctorService !");
             console.log("Error saveBulkScheduleDoctorService >>> res: ", res);
         }
-        // this.props.saveBulkScheduleDoctor({
-        //     arrSchedule: result,
-        //     doctorId: selectedDoctor.value,
-        //     formatDate: formatDate,
-        // });
     };
 
     render() {
@@ -233,8 +228,6 @@ const mapDispatchToProps = (dispatch) => {
         fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
         fetchAllcodeScheduleTime: () =>
             dispatch(actions.fetchAllcodeScheduleTime()),
-        // saveBulkScheduleDoctor: (data) =>
-        //     dispatch(actions.saveDetailDoctor(data)),
     };
 };
 

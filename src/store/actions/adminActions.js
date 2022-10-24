@@ -10,16 +10,12 @@ import {
     getAllDoctors,
     saveDetailDoctorService,
     getDetailInforDoctorService,
-    // getMarkdownService,
-    // saveBulkScheduleDoctorService,
     createNewSpecialtyService,
     getAllSpecialtyService,
     editSpecialtyService,
     getSpecialtyByIdService,
     deleteSpecialtyService,
-    // getAllSpecialty,
     createNewClinicService,
-    getAllClinic,
     editClinicService,
     deleteClinicService,
     getAllClinicService,
@@ -208,6 +204,7 @@ export const deleteUserFailed = () => ({
     type: actionTypes.DELETE_USER_FAILED,
 });
 
+// Doctor
 export const fetchTopDoctor = (limit) => {
     return async (dispatch, getState) => {
         try {
@@ -310,31 +307,6 @@ export const fetchDetailInforDoctorFailed = () => ({
     type: actionTypes.FETCH_DETAIL_INFOR_DOCTOR_FAILED,
 });
 
-// export const fetchMarkdown = (doctorId) => {
-//     return async (dispatch, getState) => {
-//         try {
-//             let res = await getMarkdownService(doctorId);
-//             if (res && res.errCode === 0) {
-//                 dispatch(fetchMarkdownSuccess(res.data));
-//             } else {
-//                 dispatch(fetchMarkdownFailed());
-//             }
-//         } catch (error) {
-//             console.log("Erorr markdown failed: ", error);
-//             dispatch(fetchMarkdownFailed());
-//         }
-//     };
-// };
-
-// export const fetchMarkdownSuccess = (mardownData) => ({
-//     type: actionTypes.FETCH_MARKDOWN_SUCCESS,
-//     data: mardownData,
-// });
-
-// export const fetchMarkdownFailed = () => ({
-//     type: actionTypes.FETCH_MARKDOWN_FAILED,
-// });
-
 // All code
 export const fetchAllcodeType = (type) => {
     return async (dispatch, getState) => {
@@ -386,33 +358,6 @@ export const fetchAllcodeScheduleTimeFailed = () => ({
     type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
 });
 
-// export const saveBulkScheduleDoctor = (data) => {
-//     return async (dispatch, getState) => {
-//         try {
-//             let res = await saveBulkScheduleDoctorService(data);
-//             if (res && res.errCode === 0) {
-//                 toast.success("Save bulk schedule doctor success!");
-//                 dispatch(saveBulkScheduleDoctorSuccess());
-//             } else {
-//                 toast.error("Save bulk schedule doctor error!");
-//                 dispatch(saveBulkScheduleDoctorFailed());
-//             }
-//         } catch (error) {
-//             toast.error("Save bulk schedule doctor error!");
-//             console.log("Erorr save bulk schedule doctor failed: ", error);
-//             dispatch(saveBulkScheduleDoctorFailed());
-//         }
-//     };
-// };
-
-// export const saveBulkScheduleDoctorSuccess = () => ({
-//     type: actionTypes.SAVE_BULK_SCHEDULE_DOCTOR_SUCCESS,
-// });
-
-// export const saveBulkScheduleDoctorFailed = () => ({
-//     type: actionTypes.SAVE_BULK_SCHEDULE_DOCTOR_FAILED,
-// });
-
 export const getRequiredDoctorInfor = () => {
     return async (dispatch, getState) => {
         try {
@@ -421,7 +366,7 @@ export const getRequiredDoctorInfor = () => {
             let resPayment = await getAllCodeService("PAYMENT");
             let resProvince = await getAllCodeService("PROVINCE");
             let resSpecialty = await getAllSpecialtyService();
-            let resClinic = await getAllClinic();
+            let resClinic = await getAllClinicService();
             if (
                 resPrice &&
                 resPrice.errCode === 0 &&

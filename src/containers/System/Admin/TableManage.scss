@@ -46,6 +46,16 @@
     &:focus {
       box-shadow: none;
     }
+
+    &.btn-doctor-action {
+      padding: 15px 0;
+      display: block;
+      margin: auto;
+    }
+
+    &.btn-user {
+      padding: 0 12px;
+    }
   }
 
   .btn-delete {
@@ -58,6 +68,12 @@
 
   .image {
     width: 200px;
+    margin: auto;
+    display: block;
+  }
+
+  .avatar {
+    width: 100px;
     margin: auto;
     display: block;
   }
@@ -75,6 +91,12 @@
   .action {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .action-user {
+    display: flex;
     justify-content: center;
     align-items: center;
   }

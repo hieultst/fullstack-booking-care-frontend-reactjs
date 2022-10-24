@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import HomeHeader from "../../HomePage/HomeHeader";
+
 import "./DetailDoctor.scss";
+import HomeHeader from "../../HomePage/HomeHeader";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import DoctorSchedule from "./DoctorSchedule";
+import Footer from "../../HomePage/Footer";
+import SystemFAQ from "../../../components/SystemFAQ/SystemFAQ";
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -15,7 +18,7 @@ class DetailDoctor extends Component {
         };
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         if (
             this.props.match &&
             this.props.match.params &&
@@ -29,7 +32,7 @@ class DetailDoctor extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps) {
         if (prevProps.detailDoctor !== this.props.detailDoctor) {
             this.setState({
                 detailDoctor: this.props.detailDoctor,
@@ -40,6 +43,7 @@ class DetailDoctor extends Component {
     render() {
         let { detailDoctor } = this.state;
         let { language } = this.props;
+
         let nameVi = "",
             nameEn = "";
         if (detailDoctor && detailDoctor.positionData) {
@@ -99,6 +103,8 @@ class DetailDoctor extends Component {
                     </div>
                     <div className="comment-doctor"></div>
                 </div>
+                <SystemFAQ />
+                <Footer />
             </>
         );
     }

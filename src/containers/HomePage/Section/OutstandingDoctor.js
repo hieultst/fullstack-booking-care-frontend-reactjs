@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router";
+import Slider from "react-slick";
 
 import "./OutstandingDoctor.scss";
 import * as actions from "../../../store/actions";
-import { LANGUAGES } from "../../../utils";
-
-import Slider from "react-slick";
+import { LANGUAGES, path } from "../../../utils";
+import { Link } from "react-router-dom";
 
 class OutstandingDoctor extends Component {
     constructor(props) {
@@ -17,10 +17,10 @@ class OutstandingDoctor extends Component {
         };
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+    componentDidUpdate(prevProps) {
+        if (prevProps.topDoctors !== this.props.topDoctors) {
             this.setState({
-                arrDoctors: this.props.topDoctorsRedux,
+                arrDoctors: this.props.topDoctors,
             });
         }
     }
@@ -29,15 +29,10 @@ class OutstandingDoctor extends Component {
         this.props.loadTopDoctors();
     }
 
-    handleViewDetailDoctor = (doctor) => {
-        if (this.props.history) {
-            this.props.history.push(`/detail-doctor/${doctor.id}`);
-        }
-    };
-
     render() {
-        let arrDoctors = this.state.arrDoctors;
+        let { arrDoctors } = this.state;
         let { language } = this.props;
+
         return (
             <div className="section outstanding-doctor">
                 <div className="section-container">
@@ -71,29 +66,30 @@ class OutstandingDoctor extends Component {
                                         <div
                                             className="section-item"
                                             key={index}
-                                            onClick={() =>
-                                                this.handleViewDetailDoctor(
-                                                    item
-                                                )
-                                            }
                                         >
-                                            <div className="section-item-content">
-                                                <div
-                                                    className="outstanding-doctor-img"
-                                                    style={{
-                                                        backgroundImage: `url(${imageBase64})`,
-                                                    }}
-                                                ></div>
-                                                <div className="item-text">
-                                                    <h3>
-                                                        {language ===
-                                                        LANGUAGES.VI
-                                                            ? nameVi
-                                                            : nameEn}
-                                                    </h3>
-                                                    <h4>Khoa</h4>
+                                            <Link
+                                                to={
+                                                    path.DETAIL_DOCTORS +
+                                                    item.id
+                                                }
+                                            >
+                                                <div className="section-item-content">
+                                                    <div
+                                                        className="outstanding-doctor-img"
+                                                        style={{
+                                                            backgroundImage: `url(${imageBase64})`,
+                                                        }}
+                                                    ></div>
+                                                    <div className="item-text">
+                                                        <h3>
+                                                            {language ===
+                                                            LANGUAGES.VI
+                                                                ? nameVi
+                                                                : nameEn}
+                                                        </h3>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         </div>
                                     );
                                 })}
@@ -108,8 +104,7 @@ class OutstandingDoctor extends Component {
 const mapStateToProps = (state) => {
     return {
         language: state.app.language,
-        isLoggedIn: state.user.isLoggedIn,
-        topDoctorsRedux: state.admin.topDoctors,
+        topDoctors: state.admin.topDoctors,
     };
 };
 

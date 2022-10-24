@@ -11,9 +11,7 @@ class TableManage extends Component {
             data: [],
         };
     }
-
-    async componentDidMount() {}
-
+    componentDidMount() {}
     componentDidUpdate(prevProps) {
         if (prevProps.data !== this.props.data) {
             this.setState({
@@ -32,6 +30,7 @@ class TableManage extends Component {
 
     render() {
         let { language, data, title, id } = this.props;
+        console.log("Data: ", data);
 
         return (
             <>
@@ -105,7 +104,7 @@ class TableManage extends Component {
                                             this.handleEditFromParent(item);
                                         }}
                                     >
-                                        <td>{index + 1}</td>
+                                        <td className="stt">{index + 1}</td>
                                         <td>{item.name}</td>
                                         <td>{item.address}</td>
                                         <td>
@@ -140,6 +139,86 @@ class TableManage extends Component {
                                             </button>
                                             <button
                                                 className="btn btn-delete"
+                                                onClick={() => {
+                                                    this.handleDelete(item);
+                                                }}
+                                            >
+                                                <i className="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        {data &&
+                            data.length > 0 &&
+                            id === "doctor" &&
+                            data.map((item, index) => {
+                                return (
+                                    <tr
+                                        key={index}
+                                        onClick={() => {
+                                            this.handleEditFromParent(item);
+                                        }}
+                                    >
+                                        <td className="stt">{index + 1}</td>
+                                        <td>{item.email}</td>
+                                        <td>{`${item.lastName} ${item.firstName}`}</td>
+                                        <td>{item.address}</td>
+                                        <td>
+                                            {language === LANGUAGES.VI
+                                                ? item.genderData.valueVi
+                                                : item.genderData.valueEn}
+                                        </td>
+                                        <td>{item.phoneNumber}</td>
+                                        <td>
+                                            <img
+                                                className="avatar"
+                                                src={item.image}
+                                            ></img>
+                                        </td>
+                                        <td>
+                                            <button
+                                                className="btn btn-edit btn-doctor-action"
+                                                onClick={() => {
+                                                    this.handleEditFromParent(
+                                                        item
+                                                    );
+                                                }}
+                                            >
+                                                <i className="fas fa-pencil-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        {data &&
+                            data.length > 0 &&
+                            id === "user" &&
+                            data.map((item, index) => {
+                                return (
+                                    <tr
+                                        key={index}
+                                        onClick={() => {
+                                            this.handleEditFromParent(item);
+                                        }}
+                                    >
+                                        <td className="stt">{index + 1}</td>
+                                        <td>{item.email}</td>
+                                        <td>{`${item.lastName} ${item.firstName}`}</td>
+                                        <td>{item.address}</td>
+                                        <td className="action-user">
+                                            <button
+                                                className="btn btn-edit btn-user"
+                                                onClick={() => {
+                                                    this.handleEditFromParent(
+                                                        item
+                                                    );
+                                                }}
+                                            >
+                                                <i className="fas fa-pencil-alt"></i>
+                                            </button>
+                                            <button
+                                                className="btn btn-delete btn-user"
                                                 onClick={() => {
                                                     this.handleDelete(item);
                                                 }}

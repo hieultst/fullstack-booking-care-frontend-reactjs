@@ -3,13 +3,16 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
-import "react-markdown-editor-lite/lib/index.css";
 import Select from "react-select";
+import _ from "lodash";
+import "react-markdown-editor-lite/lib/index.css";
 
 import "./ManageDoctor.scss";
 import * as actions from "../../../store/actions";
 import { CRUD_ACTIONS, LANGUAGES } from "../../../utils";
 import { getDetailInforDoctorService } from "../../../services/userService";
+import TableManage from "../../System/Admin/TableManage";
+import { titleDoctor } from "../../System/DataValid";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -112,7 +115,7 @@ class ManageDoctor extends Component {
         this.props.getAllRequiredDoctorInfor();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps) {
         if (prevProps.listDoctor !== this.props.listDoctor) {
             let dataSelect = this.builDataInputSelect(
                 this.props.listDoctor,
@@ -122,6 +125,7 @@ class ManageDoctor extends Component {
                 listDoctor: dataSelect,
             });
         }
+
         if (prevProps.language !== this.props.language) {
             let { resPrice, resPayment, resProvince, resSpecialty } =
                 this.props.allRequiredDoctorInfor;
@@ -211,6 +215,23 @@ class ManageDoctor extends Component {
             addressClinic: this.state.addressClinic,
             note: this.state.note,
         });
+
+        this.setState({
+            action: CRUD_ACTIONS.CREATE,
+            selectedDoctor: "",
+            hasOldData: false,
+            contentMarkdown: "",
+            contentHTML: "",
+            description: "",
+            addressClinic: "",
+            nameClinic: "",
+            note: "",
+            selectedProvince: "",
+            selectedPayment: "",
+            selectedPrice: "",
+            selectedSpecialty: "",
+            selectedClinic: "",
+        });
     };
 
     handleChangeSelect = async (selectedDoctor) => {
@@ -222,24 +243,52 @@ class ManageDoctor extends Component {
             listSpecialty,
             listClinic,
         } = this.state;
+
+        let addressClinic = "",
+            nameClinic = "",
+            note = "",
+            paymentId = "",
+            priceId = "",
+            provinceId = "",
+            specialtyId = "",
+            clinicId = "",
+            selectedPayment = "",
+            selectedPrice = "",
+            selectedProvince = "",
+            selectedSpecialty = "",
+            selectedClinic = "";
+
         let res = await getDetailInforDoctorService(selectedDoctor.value);
-        if (res && res.errCode === 0 && res.data && res.data.Markdown) {
-            let markdown = res.data.Markdown;
-
-            let addressClinic = "",
-                nameClinic = "",
-                note = "",
-                paymentId = "",
-                priceId = "",
-                provinceId = "",
-                specialtyId = "",
-                clinicId = "",
-                selectedPayment = "",
-                selectedPrice = "",
-                selectedProvince = "",
-                selectedSpecialty = "",
-                selectedClinic = "";
-
+        if (res && res.errCode === 0 && res.data) {
+            this.setState({
+                action: CRUD_ACTIONS.CREATE,
+                hasOldData: false,
+                contentMarkdown: "",
+                contentHTML: "",
+                description: "",
+                addressClinic: "",
+                nameClinic: "",
+                note: "",
+                selectedProvince: "",
+                selectedPayment: "",
+                selectedPrice: "",
+                selectedSpecialty: "",
+                selectedClinic: "",
+            });
+            if (res.data.Markdown && res.data.Doctor_infor) {
+                this.setState({
+                    hasOldData: true,
+                    action: CRUD_ACTIONS.EDIT,
+                });
+            }
+            if (res.data.Markdown) {
+                let markdown = res.data.Markdown;
+                this.setState({
+                    contentMarkdown: markdown.contentMarkdown,
+                    contentHTML: markdown.contentHTML,
+                    description: markdown.description,
+                });
+            }
             if (res.data.Doctor_infor) {
                 addressClinic = res.data.Doctor_infor.addressClinic;
                 nameClinic = res.data.Doctor_infor.nameClinic;
@@ -265,36 +314,17 @@ class ManageDoctor extends Component {
                 selectedClinic = listClinic.find((item) => {
                     return item && item.value === clinicId;
                 });
+                this.setState({
+                    addressClinic: addressClinic,
+                    nameClinic: nameClinic,
+                    note: note,
+                    selectedPayment: selectedPayment,
+                    selectedPrice: selectedPrice,
+                    selectedProvince: selectedProvince,
+                    selectedSpecialty: selectedSpecialty,
+                    selectedClinic: selectedClinic,
+                });
             }
-            this.setState({
-                contentMarkdown: markdown.contentMarkdown,
-                contentHTML: markdown.contentHTML,
-                description: markdown.description,
-                hasOldData: true,
-                addressClinic: addressClinic,
-                nameClinic: nameClinic,
-                note: note,
-                selectedPayment: selectedPayment,
-                selectedPrice: selectedPrice,
-                selectedProvince: selectedProvince,
-                selectedSpecialty: selectedSpecialty,
-                selectedClinic: selectedClinic,
-            });
-        } else {
-            this.setState({
-                contentMarkdown: "",
-                contentHTML: "",
-                description: "",
-                hasOldData: false,
-                addressClinic: "",
-                nameClinic: "",
-                note: "",
-                selectedPayment: "",
-                selectedPrice: "",
-                selectedProvince: "",
-                selectedSpecialty: "",
-                selectedClinic: "",
-            });
         }
     };
 
@@ -315,8 +345,92 @@ class ManageDoctor extends Component {
         });
     };
 
+    handleEditFromParent = async (doctor) => {
+        let res = await getDetailInforDoctorService(doctor.id);
+        let {
+            listPayment,
+            listPrice,
+            listProvince,
+            listSpecialty,
+            listClinic,
+            listDoctor,
+        } = this.state;
+
+        let selectedPayment = "",
+            selectedPrice = "",
+            selectedProvince = "",
+            selectedSpecialty = "",
+            selectedClinic = "",
+            selectedDoctor = "";
+
+        if (res && res.errCode === 0 && res.data) {
+            let data = res.data;
+            selectedDoctor = listDoctor.find((item) => {
+                return item && item.value === data.id;
+            });
+            this.setState({
+                action: CRUD_ACTIONS.CREATE,
+                hasOldData: false,
+                doctorEditId: doctor.id,
+                selectedDoctor: selectedDoctor,
+                contentMarkdown: "",
+                contentHTML: "",
+                description: "",
+                addressClinic: "",
+                nameClinic: "",
+                note: "",
+                selectedProvince: "",
+                selectedPayment: "",
+                selectedPrice: "",
+                selectedSpecialty: "",
+                selectedClinic: "",
+            });
+            if (data.Markdown && data.Doctor_infor) {
+                this.setState({
+                    hasOldData: true,
+                    action: CRUD_ACTIONS.EDIT,
+                });
+            }
+            if (data && data.Markdown) {
+                this.setState({
+                    contentMarkdown: data.Markdown.contentMarkdown,
+                    contentHTML: data.Markdown.contentHTML,
+                    description: data.Markdown.description,
+                });
+            }
+            if (data && data.Doctor_infor) {
+                selectedProvince = listProvince.find((item) => {
+                    return item && item.value === data.Doctor_infor.provinceId;
+                });
+                selectedPayment = listPayment.find((item) => {
+                    return item && item.value === data.Doctor_infor.paymentId;
+                });
+                selectedPrice = listPrice.find((item) => {
+                    return item && item.value === data.Doctor_infor.priceId;
+                });
+                selectedSpecialty = listSpecialty.find((item) => {
+                    return item && item.value === data.Doctor_infor.specialtyId;
+                });
+                selectedClinic = listClinic.find((item) => {
+                    return item && item.value === data.Doctor_infor.clinicId;
+                });
+                this.setState({
+                    addressClinic: data.Doctor_infor.addressClinic,
+                    nameClinic: data.Doctor_infor.nameClinic,
+                    note: data.Doctor_infor.note,
+                    selectedProvince: selectedProvince,
+                    selectedPayment: selectedPayment,
+                    selectedPrice: selectedPrice,
+                    selectedSpecialty: selectedSpecialty,
+                    selectedClinic: selectedClinic,
+                });
+            }
+        }
+    };
+
     render() {
         let { hasOldData } = this.state;
+        let { listDoctor } = this.props;
 
         return (
             <div className="manage-doctor-container">
@@ -492,13 +606,13 @@ class ManageDoctor extends Component {
                 </div>
                 <div className="manage-doctor-editor">
                     <MdEditor
-                        style={{ height: "500px" }}
+                        style={{ height: "300px" }}
                         renderHTML={(text) => mdParser.render(text)}
                         onChange={this.handleEditorChange}
                         value={this.state.contentMarkdown}
                     />
                 </div>
-                <div className="my-5 mx-5">
+                <div className="my-3">
                     <button
                         className={
                             hasOldData === false
@@ -522,6 +636,15 @@ class ManageDoctor extends Component {
                         )}
                     </button>
                 </div>
+                <div className="manage-doctor-table">
+                    <TableManage
+                        title={titleDoctor}
+                        handleEditFromParent={this.handleEditFromParent}
+                        action={this.state.action}
+                        data={listDoctor}
+                        id="doctor"
+                    />
+                </div>
             </div>
         );
     }
@@ -532,6 +655,7 @@ const mapStateToProps = (state) => {
         language: state.app.language,
         listDoctor: state.admin.allDoctors,
         allRequiredDoctorInfor: state.admin.allRequiredDoctorInfor,
+        detailDoctor: state.admin.detailDoctor,
     };
 };
 
@@ -541,6 +665,8 @@ const mapDispatchToProps = (dispatch) => {
         getAllRequiredDoctorInfor: () =>
             dispatch(actions.getRequiredDoctorInfor()),
         saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data)),
+        fetchDetailInforDoctor: (data) =>
+            dispatch(actions.fetchDetailInforDoctor(data)),
     };
 };
 

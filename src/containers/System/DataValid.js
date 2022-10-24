@@ -3,6 +3,10 @@ export const errorData = {
     valueEn: "This input is required: ",
 };
 
+export const titleUser = {
+    valueVi: ["STT", "Email", "Tên", "Địa chỉ", "Thao tác"],
+    valueEn: ["STT", "Email", "Name", "Address", "Actions"],
+};
 export const titleClinic = {
     valueVi: [
         "STT",
@@ -20,6 +24,28 @@ export const titleClinic = {
         "Description",
         "Image",
         "Logo",
+        "Actions",
+    ],
+};
+export const titleDoctor = {
+    valueVi: [
+        "STT",
+        "Email",
+        "Họ và Tên",
+        "Địa chỉ",
+        "Giới tính",
+        "Số điện thoại",
+        "Hình ảnh",
+        "Thao tác",
+    ],
+    valueEn: [
+        "STT",
+        "Email",
+        "Full Name",
+        "Address",
+        "Gender",
+        "Phone number",
+        "Avatar",
         "Actions",
     ],
 };

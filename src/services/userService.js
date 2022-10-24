@@ -48,10 +48,6 @@ const getDetailInforDoctorService = (id) => {
     return axios.get(`/api/get-detail-doctor-by-id?id=${id}`);
 };
 
-// const getMarkdownService = (id) => {
-//     return axios.get(`/api/get-markdown-by-id?doctorId=${id}`);
-// };
-
 const saveBulkScheduleDoctorService = (data) => {
     return axios.post("/api/bulk-create-schedule", data);
 };
@@ -79,10 +75,6 @@ const postVerifyBookAppointment = (data) => {
 };
 
 // Specialty
-// const createNewSpecialty = (data) => {
-//     return axios.post("/api/create-new-specialty", data);
-// };
-
 const createNewSpecialtyService = (data) => {
     return axios.post("/api/create-new-specialty", data);
 };
@@ -92,10 +84,6 @@ const deleteSpecialtyService = (id) => {
         data: { id: id },
     });
 };
-
-// const getAllSpecialty = () => {
-//     return axios.get("/api/get-all-specialty");
-// };
 
 const getAllSpecialtyService = () => {
     return axios.get("/api/get-all-specialty");
@@ -123,10 +111,6 @@ const createNewClinic = (data) => {
 
 const createNewClinicService = (data) => {
     return axios.post("/api/create-new-clinic", data);
-};
-
-const getAllClinic = () => {
-    return axios.get("/api/get-all-clinic");
 };
 
 const getAllClinicService = () => {
@@ -172,7 +156,6 @@ export {
     getAllDoctors,
     saveDetailDoctorService,
     getDetailInforDoctorService,
-    // getMarkdownService,
     saveBulkScheduleDoctorService,
     getScheduleDoctorByDate,
     getExtraDoctorInforById,
@@ -185,8 +168,6 @@ export {
     deleteSpecialtyService,
     editSpecialtyService,
     getAllSpecialtyService,
-    // createNewSpecialty,
-    // getAllSpecialty,
     getDetailSpecialtyById,
     getSpecialtyByIdService,
 
@@ -194,7 +175,6 @@ export {
     createNewClinic,
     editClinicService,
     createNewClinicService,
-    getAllClinic,
     getAllClinicService,
     deleteClinicService,
     getDetailClinicById,

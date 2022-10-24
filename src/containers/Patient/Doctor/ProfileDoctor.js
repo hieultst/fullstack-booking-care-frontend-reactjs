@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
+import _ from "lodash";
+import moment from "moment/moment";
 
 import "./ProfileDoctor.scss";
 import { LANGUAGES } from "../../../utils";
 import { getProfileDoctorById } from "../../../services/userService";
-import _ from "lodash";
-import moment from "moment/moment";
 
 class ProfileDoctor extends Component {
     constructor(props) {
